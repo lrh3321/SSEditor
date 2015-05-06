@@ -31,7 +31,7 @@ namespace SSEditor.ViewModel
 		
 		public static readonly DependencyProperty PropertyPropertyValueProperty =
 			DependencyProperty.Register("PropertyPropertyValue", typeof(int), typeof(NumericPair),
-			                            new FrameworkPropertyMetadata());
+			                            new FrameworkPropertyMetadata(0));
 		
 		public int PropertyValue {
 			get { return (int)GetValue(PropertyPropertyValueProperty); }
@@ -40,7 +40,7 @@ namespace SSEditor.ViewModel
 		
 		public static readonly DependencyProperty PropertyLimitProperty =
 			DependencyProperty.Register("PropertyLimit", typeof(int), typeof(NumericPair),
-			                            new FrameworkPropertyMetadata());
+			                            new FrameworkPropertyMetadata(0));
 		
 		public int PropertyLimit {
 			get { return (int)GetValue(PropertyLimitProperty); }
@@ -49,7 +49,7 @@ namespace SSEditor.ViewModel
 		
 		public static readonly DependencyProperty GrowthRateProperty =
 			DependencyProperty.Register("GrowthRate", typeof(int), typeof(NumericPair),
-			                            new FrameworkPropertyMetadata());
+			                            new FrameworkPropertyMetadata(0));
 		
 		public int GrowthRate {
 			get { return (int)GetValue(GrowthRateProperty); }

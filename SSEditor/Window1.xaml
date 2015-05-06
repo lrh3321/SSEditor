@@ -1,132 +1,137 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Window
-	x:Class="SSEditor.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	Title="SSEditor"
-	Height="480"
-	Width="560" xmlns:my="clr-namespace:SSEditor.ViewModel">
-	<DockPanel
-		LastChildFill="True">
-		<TabControl>
-			<TabItem
-				Header="Class">
-				<Grid>
-					<Grid.Resources>
-						<Style
-							TargetType="my:NumericPair">
-							<Setter
-								Property="HorizontalAlignment"
-								Value="Center" />
-							<Setter
-								Property="VerticalAlignment"
-								Value="Center" />
-						</Style>
-					</Grid.Resources>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition
-							Width="50" />
-						<ColumnDefinition
-							Width="50" />
-						<ColumnDefinition
-							Width="115" />
-						<ColumnDefinition
-							Width="115" />
-						<ColumnDefinition
-							Width="115" />
-						<ColumnDefinition />
-						<!--						<ColumnDefinition />
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window x:Class="SSEditor.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:SSEditor.ViewModel"
+        Title="SSEditor"
+        Width="560"
+        Height="480">
+    <DockPanel LastChildFill="True">
+        <TabControl>
+            <TabItem Header="Class">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="my:NumericPair">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="115" />
+                        <ColumnDefinition Width="115" />
+                        <ColumnDefinition Width="115" />
+                        <ColumnDefinition />
+                        <!--<ColumnDefinition />
 						<ColumnDefinition />
 						<ColumnDefinition />-->
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition
-							Height="*" />
-						<!--						<RowDefinition
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <!--						<RowDefinition
 							Height="*" />-->
-						<RowDefinition
-							Height="90" />
-						<RowDefinition
-							Height="90" />
-						<RowDefinition
-							Height="90" />
-						<RowDefinition
-							Height="23" />
-					</Grid.RowDefinitions>
-					<ListBox
-						x:Name="lstClass"
-						Grid.Column="0"
-						Grid.ColumnSpan="2"
-						Grid.Row="0"
-						Grid.RowSpan="4"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Stretch"
-						Margin="8,8,0,8"
-						Width="84"></ListBox>
-					<Button
-						Content="新建"
-						Grid.Column="0"
-						Grid.Row="5"></Button>
-					<Button
-						Content="删除"
-						Grid.Column="1"
-						Grid.Row="5"></Button>
-					<my:NumericPair
-						Header="HP"
-						Grid.Column="2"
-						Grid.Row="1"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top" />
-					<my:NumericPair
-						Header="力量"
-						Grid.Column="2"
-						Grid.Row="2"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top" />
-					<my:NumericPair
-						Header="技术"
-						Grid.Column="2"
-						Grid.Row="3"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top" />
-					<!--  -->
-					<my:NumericPair
-						Header="敏捷"
-						Grid.Column="3"
-						Grid.Row="1"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top" />
-					<my:NumericPair
-						Grid.Column="3"
-						Grid.Row="2"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top"
-						Header="魔力" />
-					<my:NumericPair
-						Grid.Column="3"
-						Grid.Row="3"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top"
-						Header="幸运" />
-					<!--  -->
-					<my:NumericPair
-						Grid.Column="4"
-						Grid.Row="1"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top"
-						Header="守备" />
-					<my:NumericPair
-						Grid.Column="4"
-						Grid.Row="2"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top"
-						Header="魔防" />
-					<my:NumericPair
-						Grid.Column="4"
-						Grid.Row="3"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top"
-						Header="移动" />
-				</Grid>
-			</TabItem>
-		</TabControl>
-	</DockPanel>
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="23" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="2"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Bottom"
+                               Text="名称：" />
+                    <TextBox x:Name="txtName"
+                             Grid.Column="2"
+                             Margin="36,0,0,0"
+                             VerticalAlignment="Bottom" />
+                    <GroupBox Grid.Column="3" Header="简介">
+                        <TextBox x:Name="txtDescription" AcceptsReturn="True" />
+                    </GroupBox>
+
+                    <ListBox x:Name="lstClass"
+                             Grid.Row="0"
+                             Grid.RowSpan="4"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="2"
+                             Width="84"
+                             Margin="8,8,0,8"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Stretch" />
+                    <my:NumericPair x:Name="np0"
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="HP" />
+                    <!--    -->
+                    <my:NumericPair x:Name="np4"
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="速度" />
+                    <!--    -->
+                    <my:NumericPair x:Name="np6"
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="守备" />
+                    <my:NumericPair x:Name="np1"
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="力量" />
+                    <my:NumericPair x:Name="np2"
+                                    Grid.Row="2"
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="魔力" />
+                    <my:NumericPair x:Name="np7"
+                                    Grid.Row="2"
+                                    Grid.Column="4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="魔防" />
+                    <my:NumericPair x:Name="np3"
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="技术" />
+                    <my:NumericPair x:Name="np5"
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="幸运" />
+                    <my:NumericPair x:Name="np8"
+                                    Grid.Row="3"
+                                    Grid.Column="4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Header="移动"
+                                    PropertyLimit="20" />
+                    <Button x:Name="button"
+                            Grid.Row="4"
+                            Grid.Column="5"
+                            Width="75"
+                            Margin="0,2,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="保存" Click="SaveButton_Click" />
+                    <Button Grid.Row="5"
+                            Grid.Column="0"
+                            Click="Button_Click"
+                            Content="新建" />
+                    <Button Grid.Row="5"
+                            Grid.Column="1"
+                            Click="DeleteButton_Click"
+                            Content="删除" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>

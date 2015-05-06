@@ -21,51 +21,32 @@ using System.Windows.Markup;
 namespace SSEditor.ViewModel
 {
 	[ContentProperty("Value")]
-	public partial class NumericUpDown :ContentControl,INotifyPropertyChanged
+	public partial class NumericUpDown //:ContentControl,INotifyPropertyChanged
 	{
-		private int numericValue = 0;
 		public NumericUpDown()
 		{
 			this.InitializeComponent();
-//			Binding bind=new Binding("LabelText");
-//			bind.ElementName="numericControl";
-//			txtlabel.SetBinding(TextBlock.TextProperty,bind);
 		}
-		#region overrides
-		protected override void AddChild(object value)
-		{
-			if (value is int)
-				this.Value=(int)value;
-			else
-				base.AddChild(value);
-		}
-		
-		protected override void AddText(string text)
-		{
-			LabelText=text;
-		}
+        //public int Value
+        //{
+        //	get { return numericValue; }
+        //	set
+        //	{
+        //		numericValue = value;
+        //		NotifyPropertyChanged("Value");
+        //	}
+        //}
+        #region DependencyProperties
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(int), typeof(NumericUpDown), new FrameworkPropertyMetadata(0));
 
-		#endregion
-		public int Value
-		{
-			get { return numericValue; }
-			set
-			{
-				numericValue = value;
-				NotifyPropertyChanged("Value");
-			}
-		}
-		#region DependencyProperties
-		public static readonly DependencyProperty LabelTextProperty =
-			DependencyProperty.Register("LabelText", typeof(string), typeof(NumericUpDown),
-			                            new FrameworkPropertyMetadata(string.Empty));
-		
-		public string LabelText {
-			get { return (string)GetValue(LabelTextProperty); }
-			set { SetValue(LabelTextProperty, value); }
-		}
-		
-		public static readonly DependencyProperty IncrementProperty =
+        public int Value
+        {
+            get { return (int)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty IncrementProperty =
 			DependencyProperty.Register("Increment", typeof(int), typeof(NumericUpDown),
 			                            new FrameworkPropertyMetadata(1));
 		
@@ -91,11 +72,6 @@ namespace SSEditor.ViewModel
 			set { SetValue(MinValueProperty, value); }
 		}
 		#endregion
-//		public int Increment { get; set; }
-//
-//		public int MaxValue { get; set; }
-//
-//		public int MinValue { get; set; }
 
 		private void UpButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -114,7 +90,7 @@ namespace SSEditor.ViewModel
 			Value=numericValue;
 		}
 		
-		private void ValueText_KeyDown(object sender, KeyEventArgs e)
+		private void ValueText_PreViewKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key== Key.Up) {
 				int newValue = (Value + Increment);
@@ -128,17 +104,16 @@ namespace SSEditor.ViewModel
 		}
 		
 		
-		#region INotifyPropertyChanged Members
-		public event PropertyChangedEventHandler PropertyChanged;
-		public void NotifyPropertyChanged(string propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		#endregion
+		//#region INotifyPropertyChanged Members
+		//public event PropertyChangedEventHandler PropertyChanged;
+		//public void NotifyPropertyChanged(string propertyName)
+		//{
+		//	if (PropertyChanged != null)
+		//	{
+		//		PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		//	}
+		//}		
+		//#endregion
 
 	}
 
