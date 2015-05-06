@@ -2,9 +2,8 @@
 
 using System.Resources;
 using System.Windows;
-
+using System.Windows.Markup;
 #endregion
-
 
 
 //In order to begin building localizable applications, set 
@@ -16,6 +15,9 @@ using System.Windows;
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
+[assembly:XmlnsDefinition("http://controls.lrh3321.com/sseditor","clr-namespace:SSEditor.ViewModel")]
+[assembly:XmlnsDefinition("http://controls.lrh3321.com/sseditor","clr-namespace:SSEditor.Object")]
+[assembly:XmlnsDefinition("http://controls.lrh3321.com/sseditor","clr-namespace:SSEditor")]
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located

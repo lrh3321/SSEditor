@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace SSHelper
+namespace SSEditor
 {
 	/// <summary>
 	/// Description of Utilty.

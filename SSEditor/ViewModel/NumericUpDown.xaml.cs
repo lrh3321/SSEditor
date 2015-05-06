@@ -16,16 +16,36 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Markup;
 
 namespace SSEditor.ViewModel
 {
-	public partial class NumericUpDown : INotifyPropertyChanged
+	[ContentProperty("Value")]
+	public partial class NumericUpDown :ContentControl,INotifyPropertyChanged
 	{
 		private int numericValue = 0;
 		public NumericUpDown()
 		{
 			this.InitializeComponent();
+//			Binding bind=new Binding("LabelText");
+//			bind.ElementName="numericControl";
+//			txtlabel.SetBinding(TextBlock.TextProperty,bind);
 		}
+		#region overrides
+		protected override void AddChild(object value)
+		{
+			if (value is int)
+				this.Value=(int)value;
+			else
+				base.AddChild(value);
+		}
+		
+		protected override void AddText(string text)
+		{
+			LabelText=text;
+		}
+
+		#endregion
 		public int Value
 		{
 			get { return numericValue; }
@@ -35,42 +55,79 @@ namespace SSEditor.ViewModel
 				NotifyPropertyChanged("Value");
 			}
 		}
+		#region DependencyProperties
+		public static readonly DependencyProperty LabelTextProperty =
+			DependencyProperty.Register("LabelText", typeof(string), typeof(NumericUpDown),
+			                            new FrameworkPropertyMetadata(string.Empty));
+		
+		public string LabelText {
+			get { return (string)GetValue(LabelTextProperty); }
+			set { SetValue(LabelTextProperty, value); }
+		}
+		
+		public static readonly DependencyProperty IncrementProperty =
+			DependencyProperty.Register("Increment", typeof(int), typeof(NumericUpDown),
+			                            new FrameworkPropertyMetadata(1));
+		
+		public int Increment {
+			get { return (int)GetValue(IncrementProperty); }
+			set { SetValue(IncrementProperty, value); }
+		}
+		public static readonly DependencyProperty MaxValueProperty =
+			DependencyProperty.Register("MaxValue", typeof(int), typeof(NumericUpDown),
+			                            new FrameworkPropertyMetadata(int.MaxValue));
 
-		public int Increment { get; set; }
+		public int MaxValue {
+			get { return (int)GetValue(MaxValueProperty); }
+			set { SetValue(MaxValueProperty, value); }
+		}
 
-		public int MaxValue { get; set; }
+		public static readonly DependencyProperty MinValueProperty =
+			DependencyProperty.Register("MinValue", typeof(int), typeof(NumericUpDown),
+			                            new FrameworkPropertyMetadata(0));
 
-		public int MinValue { get; set; }
+		public int MinValue {
+			get { return (int)GetValue(MinValueProperty); }
+			set { SetValue(MinValueProperty, value); }
+		}
+		#endregion
+//		public int Increment { get; set; }
+//
+//		public int MaxValue { get; set; }
+//
+//		public int MinValue { get; set; }
 
 		private void UpButton_Click(object sender, RoutedEventArgs e)
 		{
 			int newValue = (Value + Increment);
-			if (newValue > MaxValue)
-			{
-				Value = MaxValue;
-			}
-			else
-			{
-				Value = newValue;
-			}
+			Value=Math.Min(newValue,MaxValue);
 		}
 		private void DownButton_Click(object sender, RoutedEventArgs e)
 		{
 			int newValue = (Value - Increment);
-			if (newValue < MinValue)
-			{
-				Value = MinValue;
-			}
-			else
-			{
-				Value = newValue;
-			}
+			Value=Math.Max(newValue,MinValue);
 		}
 		private void ValueText_LostFocus(object sender, RoutedEventArgs e)
 		{
-			Value=0;
-			int.TryParse(ValueText.Text,out Value);
+			int numericValue=0;
+			int.TryParse(ValueText.Text,out numericValue);
+			Value=numericValue;
 		}
+		
+		private void ValueText_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key== Key.Up) {
+				int newValue = (Value + Increment);
+				Value=Math.Min(newValue,MaxValue);
+				e.Handled=true;
+			}else if (e.Key==Key.Down) {
+				int newValue = (Value - Increment);
+				Value=Math.Max(newValue,MinValue);
+				e.Handled=true;
+			}
+		}
+		
+		
 		#region INotifyPropertyChanged Members
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void NotifyPropertyChanged(string propertyName)
@@ -80,6 +137,7 @@ namespace SSEditor.ViewModel
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
 		#endregion
 
 	}
@@ -93,7 +151,7 @@ namespace SSEditor.ViewModel
 			if (value==null) {
 				return "0";
 			}
-			return (string)value;
+			return value.ToString();
 		}
 		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
