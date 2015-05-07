@@ -10,36 +10,36 @@ using System;
 
 namespace SSEditor.Object
 {
-	/// <summary>
-	/// Description of Class.
-	/// </summary>
-	public class Class
-	{
-		public Class():this("新建职业")
-		{
-		}
+    /// <summary>
+    /// Description of Class.
+    /// </summary>
+    public class Class
+    {
+        public Class() : this("新建职业")
+        {
+        }
 
         public Class(string name)
         {
             Name = name;
-			this.propertyBasic=new int[PROPERTY_COUNT];
-			this.propertyLimit=new int[PROPERTY_COUNT];
+            this.propertyBasic = new int[PROPERTY_COUNT];
+            this.propertyLimit = new int[PROPERTY_COUNT];
             for (int i = 0; i < PROPERTY_COUNT; i++)
             {
                 propertyLimit[i] = 20;
             }
-			this.growRate=new int[PROPERTY_COUNT];
+            this.growRate = new int[PROPERTY_COUNT];
         }
 
-		public const int PROPERTY_COUNT=9;
-		public string ID{get;set;}
-		
+        public const int PROPERTY_COUNT = 9;
+        public string ID { get; set; }
+
         public string Name { get; set; }
         public string Description { get; set; }
 
         public int[] propertyBasic;
-		public int[] propertyLimit;
-		public int[] growRate;
+        public int[] propertyLimit;
+        public int[] growRate;
         public override string ToString()
         {
             return this.Name;
@@ -69,27 +69,29 @@ namespace SSEditor.Object
         /// <summary>最大HP</summary>
         MaxHP
     }
-    
+
     [Flags]
     public enum ItemType : int
     {
         /// <summary>消耗品</summary>
-        Consumables = 0x0100,
+        Consumables = 0x010,
+        /// <summary>饰品</summary>
+        Accessory = 0x100,
         /// <summary>武器</summary>
         Weapon = 0x1000,
         /// <summary>剑</summary>
-        Sword=0x1001,
+        Sword = 0x1001,
         /// <summary>斧</summary>
         Axe,
         /// <summary>枪</summary>
         Spear,
+        /// <summary>弓</summary>
+        Bowl,
         /// <summary>魔导书</summary>
         MagicBook = 0x2000,
         /// <summary>石</summary>
         Stone = 0x4000,
         /// <summary>魔杖</summary>
-        Staff = 0x8000,
-        /// <summary>饰品</summary>
-        Accessory = 0x10000
+        Staff = 0x8000
     }
 }

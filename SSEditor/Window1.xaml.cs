@@ -29,23 +29,36 @@ namespace SSEditor
 	{
 		ObservableCollection<Object.Class> m_classList;
 		NumericPair[] pairs;
+        ComboBox[] cbos;
 
 		public Window1()
 		{
 			InitializeComponent();
+                        
+            string []arr = new string[] { "剑", "枪", "斧", "弓", "魔", "石", "杖" };
+            cbos = new ComboBox[arr.Length];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                var b = new BulletDecorator();
+                b.Bullet = new TextBlock() { Text = arr [i]};
+                b.Child =cbos[i]= new ComboBox();
+                proficContainer.Children.Add(b);
+            }
 
-			pairs = new NumericPair[9];
+            pairs = new NumericPair[9];
 
 			for (int i = 0; i < 9; i++)
 			{
 				pairs[i] = (NumericPair)this.FindName("np" + i.ToString());
 			}
 
+
 			this.Loaded += Window1_Loaded;
+
 
 //			var b=new BulletDecorator();
 //			b.Bullet=new TextBlock(){Text=""};
-		}
+        }
 
 		protected override void OnClosed(EventArgs e)
 		{
