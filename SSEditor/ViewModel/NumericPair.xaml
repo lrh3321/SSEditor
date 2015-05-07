@@ -5,7 +5,7 @@
           x:Name="rbroot">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -17,8 +17,8 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Text="基础值:" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="1" Grid.Column="0" Text="上  限:" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="2" Grid.Column="0" Text="成长率:" VerticalAlignment="Center"/>
-        <my:NumericUpDown Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="100"  MaxValue="999" Value="{Binding PropertyValue,ElementName=rbroot}"/>
-        <my:NumericUpDown Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="100"  MaxValue="999" Value="{Binding PropertyLimit,ElementName=rbroot}"/>
-        <my:NumericUpDown Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="100"  MaxValue="999" Increment="5" Value="{Binding GrowthRate,ElementName=rbroot}"/>
+        <my:NumericUpDown Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="60"  MaxValue="999" Value="{Binding PropertyValue,ElementName=rbroot}"/>
+        <my:NumericUpDown Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="60"  MaxValue="999" Value="{Binding PropertyLimit,ElementName=rbroot}"/>
+        <my:NumericUpDown Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="60"  MaxValue="999" Increment="5" Value="{Binding GrowthRate,ElementName=rbroot}"/>
     </Grid>
 </GroupBox>

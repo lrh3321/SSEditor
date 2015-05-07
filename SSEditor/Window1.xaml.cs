@@ -18,87 +18,95 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using SSEditor.ViewModel;
+using System.Windows.Controls.Primitives;
 
 namespace SSEditor
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
-    public partial class Window1 : Window
-    {
-        ObservableCollection<Object.Class> m_classList;
-        NumericPair[] pairs;
+	/// <summary>
+	/// Interaction logic for Window1.xaml
+	/// </summary>
+	public partial class Window1 : Window
+	{
+		ObservableCollection<Object.Class> m_classList;
+		NumericPair[] pairs;
 
-        public Window1()
-        {
-            InitializeComponent();
+		public Window1()
+		{
+			InitializeComponent();
 
-            pairs = new NumericPair[9];
+			pairs = new NumericPair[9];
 
-            for (int i = 0; i < 9; i++)
-            {
-                pairs[i] = (NumericPair)this.FindName("np" + i.ToString());
-            }
+			for (int i = 0; i < 9; i++)
+			{
+				pairs[i] = (NumericPair)this.FindName("np" + i.ToString());
+			}
 
-            this.Loaded += Window1_Loaded;
-        }
+			this.Loaded += Window1_Loaded;
 
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-        }
+//			var b=new BulletDecorator();
+//			b.Bullet=new TextBlock(){Text=""};
+		}
 
-        private void Window1_Loaded(object sender, RoutedEventArgs e)
-        {
-            m_classList = new ObservableCollection<Object.Class>();
-            lstClass.ItemsSource = m_classList;
-            lstClass.SelectionChanged += LstClass_SelectionChanged;
-        }
+		protected override void OnClosed(EventArgs e)
+		{
+			base.OnClosed(e);
+		}
 
-        private void LstClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lstClass.SelectedItem != null && lstClass.SelectedItem is Object.Class)
-            {
-                LoadObjectClass((Object.Class)lstClass.SelectedItem);
-            }
-        }
+		private void Window1_Loaded(object sender, RoutedEventArgs e)
+		{
+			m_classList = new ObservableCollection<Object.Class>();
+			lstClass.ItemsSource = m_classList;
+			lstClass.SelectionChanged += LstClass_SelectionChanged;
+		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            m_classList.Add(new Object.Class());
-            lstClass.SelectedIndex = m_classList.Count - 1;
-        }
+		private void LstClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (lstClass.SelectedItem != null && lstClass.SelectedItem is Object.Class)
+			{
+				LoadObjectClass((Object.Class)lstClass.SelectedItem);
+			}
+		}
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            m_classList.Remove((Object.Class)lstClass.SelectedItem);
-        }
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			m_classList.Add(new Object.Class());
+			lstClass.SelectedIndex = m_classList.Count - 1;
+		}
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
+		private void DeleteButton_Click(object sender, RoutedEventArgs e)
+		{
+			m_classList.Remove((Object.Class)lstClass.SelectedItem);
+		}
 
-        }
-        private void LoadObjectClass(Object.Class cls)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                pairs[i].PropertyValue = cls.propertyBasic[i];
-                pairs[i].PropertyLimit = cls.propertyLimit[i];
-                pairs[i].GrowthRate = cls.growRate[i];
-            }
-            txtName.Text = cls.Name;
-            txtDescription.Text = cls.Description;
-        }
-        private void SaveObjectClass(Object.Class cls)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                cls.propertyBasic[i] = pairs[i].PropertyValue;
-                cls.propertyLimit[i] = pairs[i].PropertyLimit;
-                cls.growRate[i] = pairs[i].GrowthRate;
-            }
-            cls.Name = txtName.Text;
-            cls.Description = txtDescription.Text;
-        }
-    }
+		private void SaveButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (lstClass.SelectedItem != null && lstClass.SelectedItem is Object.Class)
+			{
+				SaveObjectClass((Object.Class)lstClass.SelectedItem);
+			}
+			//System.Diagnostics.Debug.WriteLine("{0:x},{1:x},{2:x}",(int)Object.ItemType.Sword,(int)Object.ItemType.Axe,(int)Object.ItemType.Spear);
+		}
+		private void LoadObjectClass(Object.Class cls)
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				pairs[i].PropertyValue = cls.propertyBasic[i];
+				pairs[i].PropertyLimit = cls.propertyLimit[i];
+				pairs[i].GrowthRate = cls.growRate[i];
+			}
+			txtName.Text = cls.Name;
+			txtDescription.Text = cls.Description;
+		}
+		private void SaveObjectClass(Object.Class cls)
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				cls.propertyBasic[i] = pairs[i].PropertyValue;
+				cls.propertyLimit[i] = pairs[i].PropertyLimit;
+				cls.growRate[i] = pairs[i].GrowthRate;
+			}
+			cls.Name = txtName.Text;
+			cls.Description = txtDescription.Text;
+		}
+	}
 }

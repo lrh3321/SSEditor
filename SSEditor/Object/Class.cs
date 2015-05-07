@@ -69,7 +69,8 @@ namespace SSEditor.Object
         /// <summary>最大HP</summary>
         MaxHP
     }
-
+    
+    [Flags]
     public enum ItemType : int
     {
         /// <summary>消耗品</summary>
@@ -77,7 +78,7 @@ namespace SSEditor.Object
         /// <summary>武器</summary>
         Weapon = 0x1000,
         /// <summary>剑</summary>
-        Sword,
+        Sword=0x1001,
         /// <summary>斧</summary>
         Axe,
         /// <summary>枪</summary>

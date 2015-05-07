@@ -18,6 +18,7 @@ using System.Windows.Markup;
 [assembly:XmlnsDefinition("http://controls.lrh3321.com/sseditor","clr-namespace:SSEditor.ViewModel")]
 [assembly:XmlnsDefinition("http://controls.lrh3321.com/sseditor","clr-namespace:SSEditor.Object")]
 [assembly:XmlnsDefinition("http://controls.lrh3321.com/sseditor","clr-namespace:SSEditor")]
+[assembly: XmlnsPrefix("http://controls.lrh3321.com/sseditor", "sseditor")]
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located

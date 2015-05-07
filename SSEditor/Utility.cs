@@ -16,6 +16,9 @@ namespace SSEditor
         public const int MaxItemConut = 6;
         public const int MaxSkillConut = 5;
 
+        const char C_separator = ',';
+        const string S_separator = ",";
+        
         static Dictionary<string, string> s_nameDict;
         static Dictionary<string, string> s_descriptionDict;
         
@@ -105,7 +108,6 @@ namespace SSEditor
             } while ((t = t.NextSibling) != null);
         }
 
-
         public static bool IsHited(int rate)
         {
             return s_rnd.Next(100) < rate;
@@ -119,9 +121,6 @@ namespace SSEditor
         {
             return s_descriptionDict[id];
         }
-
-        const char C_separator = ',';
-        const string S_separator = ",";
 
         public static string ArrayToString(this int[] arr, string sep = S_separator)
         {
