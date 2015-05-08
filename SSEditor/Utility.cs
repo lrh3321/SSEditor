@@ -171,7 +171,7 @@ namespace SSEditor
 			return node.Attributes[attrName].XmlAttributeToArray();
 		}
 		
-		public static void UpdateDict(params Object.Class[] clss){
+		public static void UpdateDict(IEnumerable<Object.Class> clss){
 			int iname=0;
 			foreach (var element in clss) {
 //				if (string.IsNullOrEmpty(element.ID)) {

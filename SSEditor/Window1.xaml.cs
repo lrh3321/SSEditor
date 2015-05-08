@@ -50,12 +50,13 @@ namespace SSEditor
 				proficContainer.Children.Add(b);
 			}
 
-			pairs = new NumericPair[9];
+            pairs = new NumericPair[9];
 
 			for (int i = 0; i < 9; i++)
 			{
 				pairs[i] = (NumericPair)this.FindName("np" + i.ToString());
 			}
+
 
 			this.Loaded += Window1_Loaded;
 		}
