@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,8 +18,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Xml;
 using SSEditor.ViewModel;
 using System.Windows.Controls.Primitives;
+using System.ComponentModel;
+using Microsoft.Win32;
 
 namespace SSEditor
 {
@@ -29,10 +33,22 @@ namespace SSEditor
 	{
 		ObservableCollection<Object.Class> m_classList;
 		NumericPair[] pairs;
-
+		ComboBox[] cbos;
+		public string FileNmae{get;set;}
+		
 		public Window1()
 		{
 			InitializeComponent();
+			
+			string []arr = new string[] { "剑", "枪", "斧", "弓", "魔", "杖", "石" };
+			cbos = new ComboBox[arr.Length];
+			for (int i = 0; i < arr.Length; i++)
+			{
+				var b = new BulletDecorator();
+				b.Bullet = new TextBlock() { Text = arr [i]};
+				b.Child =cbos[i]= new ComboBox();
+				proficContainer.Children.Add(b);
+			}
 
 			pairs = new NumericPair[9];
 
@@ -42,21 +58,92 @@ namespace SSEditor
 			}
 
 			this.Loaded += Window1_Loaded;
-
-//			var b=new BulletDecorator();
-//			b.Bullet=new TextBlock(){Text=""};
 		}
 
-		protected override void OnClosed(EventArgs e)
+		protected override void OnClosing(CancelEventArgs e)
 		{
-			base.OnClosed(e);
+
+			SaveScript();
+			
+			base.OnClosing(e);
 		}
 
 		private void Window1_Loaded(object sender, RoutedEventArgs e)
 		{
 			m_classList = new ObservableCollection<Object.Class>();
+			
+			LoadScript();
 			lstClass.ItemsSource = m_classList;
 			lstClass.SelectionChanged += LstClass_SelectionChanged;
+		}
+
+		void SaveScript()
+		{
+			var temp = Path.GetTempFileName();
+			string dest = string.Empty;
+			if (string.IsNullOrEmpty(this.FileNmae)) {
+				SaveFileDialog sfd = new SaveFileDialog();
+				if (sfd.ShowDialog().Value) {
+					this.FileNmae=sfd.FileName;
+				}else{
+					return;
+				}
+			}
+			if (File.Exists(dest)) {
+				File.Delete(dest);
+			}
+			XmlDocument doc = new XmlDocument();
+			var root = doc.CreateElement("Root");
+			XmlElement t;
+			Utility.UpdateDict(m_classList);
+			foreach (var element in m_classList) {
+				t = doc.CreateElement(Utility.CLASS_DEFINE);
+				t.SetAttribute("ID", element.ID);
+				t.SetAttribute("Basic", element.propertyBasic.ArrayToString());
+				t.SetAttribute("Limit", element.propertyLimit.ArrayToString());
+				t.SetAttribute("Growth", element.growRate.ArrayToString());
+				root.AppendChild(t);
+			}
+			doc.AppendChild(root);
+			doc.Save(dest);
+			
+//			File.Move(temp, dest);
+		}
+
+		void LoadScript()
+		{
+			OpenFileDialog ofd = new OpenFileDialog { CheckFileExists = true };
+			if ((bool)ofd.ShowDialog()) {
+				XmlDocument doc = new XmlDocument();
+				doc.Load(ofd.FileName);
+				var root = doc.DocumentElement;
+				XmlNode t = root.FirstChild;
+				Object.Class tc;
+				while (t != null) {
+					switch (t.Name) {
+						case Utility.CLASS_DEFINE:
+							m_classList.Add(tc = new Object.Class());
+							tc.ID = t.Attributes["ID"].Value;
+							tc.propertyBasic = t.GetArray("Basic");
+							tc.propertyLimit = t.GetArray("Limit");
+							tc.growRate = t.GetArray("Growth");
+							break;
+						case Utility.UNIT_DEFINE:
+
+							break;
+						case Utility.NAME_DEFINE:
+
+							break;
+						case Utility.DESCR_DEFINE:
+
+							break;
+						default:
+
+							break;
+					}
+					t = t.NextSibling;
+				}
+			}
 		}
 
 		private void LstClass_SelectionChanged(object sender, SelectionChangedEventArgs e)

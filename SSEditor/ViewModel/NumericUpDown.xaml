@@ -43,7 +43,7 @@
                                   Stretch="Fill"
                                   Stroke="{x:Null}" />
                         </Grid>
-<!--                        <ControlTemplate.Triggers>
+                        <!--                        <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="True" />
                             <Trigger Property="IsDefaulted" Value="True" />
                             <Trigger Property="IsMouseOver" Value="True" />
@@ -63,7 +63,7 @@
         <Grid x:Name="ValueGrid" Width="Auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="26" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button x:Name="UpButton"
                     Grid.Column="1"
@@ -72,7 +72,7 @@
                     Margin="0,2,3,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    MouseLeftButtonDown="UpButton_Click"
+                    Click="UpButton_Click"
                     Style="{DynamicResource ArrowButtonStyle}" />
             <Button x:Name="DownButton"
                     Grid.Column="1"
@@ -81,7 +81,7 @@
                     Margin="0,0,3,2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    MouseLeftButtonDown="DownButton_Click"
+                    Click="DownButton_Click"
                     RenderTransformOrigin="0.5,0.5"
                     Style="{DynamicResource ArrowButtonStyle}">
                 <Button.RenderTransform>

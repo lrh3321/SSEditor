@@ -71,18 +71,36 @@ namespace SSEditor.ViewModel
 			get { return (int)GetValue(MinValueProperty); }
 			set { SetValue(MinValueProperty, value); }
 		}
-		#endregion
+        #endregion
 
-		private void UpButton_Click(object sender, RoutedEventArgs e)
-		{
-			int newValue = (Value + Increment);
-			Value=Math.Min(newValue,MaxValue);
-		}
-		private void DownButton_Click(object sender, RoutedEventArgs e)
-		{
-			int newValue = (Value - Increment);
-			Value=Math.Max(newValue,MinValue);
-		}
+        private void UpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Increase();
+        }
+        private void DownButton_Click(object sender, RoutedEventArgs e)
+        {
+            Decrease();
+        }
+        private void Increase()
+        {
+				int newValue = (Value + Increment);
+				Value=Math.Min(newValue,MaxValue);
+        }
+        private void Decrease()
+        {
+            int newValue = (Value - Increment);
+            Value = Math.Max(newValue, MinValue);
+        }
+
+        //private void UpButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    Increase();
+        //}
+
+        //private void DownButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    Decrease();
+        //}
 		private void ValueText_LostFocus(object sender, RoutedEventArgs e)
 		{
 			int numericValue=0;
@@ -93,31 +111,29 @@ namespace SSEditor.ViewModel
 		private void ValueText_PreViewKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key== Key.Up) {
-				int newValue = (Value + Increment);
-				Value=Math.Min(newValue,MaxValue);
-				e.Handled=true;
+                Increase();
+                e.Handled=true;
 			}else if (e.Key==Key.Down) {
-				int newValue = (Value - Increment);
-				Value=Math.Max(newValue,MinValue);
+                Decrease();
 				e.Handled=true;
 			}
 		}
-		
-		
-		//#region INotifyPropertyChanged Members
-		//public event PropertyChangedEventHandler PropertyChanged;
-		//public void NotifyPropertyChanged(string propertyName)
-		//{
-		//	if (PropertyChanged != null)
-		//	{
-		//		PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		//	}
-		//}		
-		//#endregion
 
-	}
 
-	[ValueConversion(typeof(int), typeof(string))]
+        //#region INotifyPropertyChanged Members
+        //public event PropertyChangedEventHandler PropertyChanged;
+        //public void NotifyPropertyChanged(string propertyName)
+        //{
+        //	if (PropertyChanged != null)
+        //	{
+        //		PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        //	}
+        //}		
+        //#endregion
+
+    }
+
+    [ValueConversion(typeof(int), typeof(string))]
 	public class IntegerValueConverter : IValueConverter
 	{
 		#region IValueConverter Members
