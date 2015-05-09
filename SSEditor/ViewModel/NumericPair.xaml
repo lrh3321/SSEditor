@@ -18,35 +18,35 @@
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    Text="基础值:" />
-        <my:NumericUpDown Grid.Row="0"
+        <my:NumericUpDown x:Name="nud1" Grid.Row="0"
                           Grid.Column="1"
                           Width="60"
                           HorizontalAlignment="Left"
-                          MaxValue="999"
-                          Value="{Binding PropertyValue,
-                                          ElementName=rbroot}" />
+                          MaxValue="999" />
+                          <!--Value="{Binding PropertyValue,
+                                          ElementName=rbroot,Mode=TwoWay}"-->
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    Text="上  限:" />
-        <my:NumericUpDown Grid.Row="1"
+        <my:NumericUpDown x:Name="nud2" Grid.Row="1"
                           Grid.Column="1"
                           Width="60"
                           HorizontalAlignment="Left"
-                          MaxValue="999"
-                          Value="{Binding PropertyLimit,
-                                          ElementName=rbroot}" />
+                          MaxValue="999"/>
+                          <!--Value="{Binding PropertyLimit,
+                                          ElementName=rbroot}"--> 
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    Text="成长率:" />
-        <my:NumericUpDown Grid.Row="2"
+        <my:NumericUpDown x:Name="nud3" Grid.Row="2"
                           Grid.Column="1"
                           Width="60"
                           HorizontalAlignment="Left"
                           Increment="5"
-                          MaxValue="999"
-                          Value="{Binding GrowthRate,
-                                          ElementName=rbroot}" />
+                          MaxValue="999"/>
+                          <!--Value="{Binding GrowthRate,
+                                          ElementName=rbroot}"--> 
     </Grid>
 </GroupBox>

@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Window x:Class="SSEditor.Window1"
+<Window x:Class="SSEditor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:SSEditor.ViewModel"
+        xmlns:my3="clr-namespace:SSEditor.Object"
         xmlns:my2="clr-namespace:System;assembly=mscorlib"
+        Language="zh-cn"
         Title="SSEditor"
         Width="560"
         Height="480">
+    <Window.CommandBindings>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="OpenCommand_Executed" Command="Open"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="SaveCommand_Executed" Command="Save"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="SaveAsCommand_Executed" Command="SaveAs"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="CloseCommand_Executed" Command="Close"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="UndoCommand_Executed" Command="Undo"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="RedoCommand_Executed" Command="Redo"/>
+    </Window.CommandBindings>
     <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top" >
+            <MenuItem Header="_File">
+                <MenuItem Command="Open"/>
+                <MenuItem Command="Save"/>
+                <MenuItem Command="SaveAs"/>
+                <Separator/>
+                <MenuItem Command="Close"/>
+            </MenuItem>
+        </Menu>
         <TabControl>
             <TabItem Header="Class">
-                <Grid>
+                <Grid x:Name="layoutRoot">
                     <Grid.Resources>
                         <Style TargetType="my:NumericPair">
                             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -53,7 +72,7 @@
                              Margin="36,0,0,0"
                              VerticalAlignment="Bottom" />
                     <GroupBox Grid.Column="3" Header="简介">
-                        <TextBox x:Name="txtDescription" AcceptsReturn="True" />
+                        <TextBox x:Name="txtDescription" AcceptsReturn="True"/>
                     </GroupBox>
                     <ListBox x:Name="lstClass"
                              Grid.Row="0"
@@ -64,32 +83,7 @@
                              Margin="8,8,0,8"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Stretch" />
-                    <my:NumericPair x:Name="np0"
-                                    Grid.Row="1"
-                                    Grid.Column="2"
-                                    Header="HP" />
-                    <!--    -->
-                    <my:NumericPair x:Name="np4"
-                                    Grid.Row="1"
-                                    Grid.Column="3"
-                                    Header="速度" />
-                    <!--    -->
-                    <my:NumericPair x:Name="np6"
-                                    Grid.Row="1"
-                                    Grid.Column="4"
-                                    Header="守备" />
-                    <my:NumericPair x:Name="np1"
-                                    Grid.Row="2"
-                                    Grid.Column="2"
-                                    Header="力量" />
-                    <my:NumericPair x:Name="np2"
-                                    Grid.Row="2"
-                                    Grid.Column="3"
-                                    Header="魔力" />
-                    <my:NumericPair x:Name="np7"
-                                    Grid.Row="2"
-                                    Grid.Column="4"
-                                    Header="魔防" />
+
                     <GroupBox Grid.Row="2"
                               Grid.RowSpan="2"
                               Grid.Column="5"
@@ -112,35 +106,14 @@
                                                 <my2:String>D</my2:String>
                                                 <my2:String>E</my2:String>
                                             </x:Array>
-
                                         </Setter.Value>
                                     </Setter>
                                     <Setter Property="SelectedIndex" Value="0" />
                                     <Setter Property="IsReadOnly" Value="True" />
                                 </Style>
                             </StackPanel.Resources>
-                            <!--<BulletDecorator>
-								<BulletDecorator.Bullet>
-									<TextBlock
-										Text="剑:" />
-								</BulletDecorator.Bullet>
-								<ComboBox />
-							</BulletDecorator>-->
                         </StackPanel>
                     </GroupBox>
-                    <my:NumericPair x:Name="np3"
-                                    Grid.Row="3"
-                                    Grid.Column="2"
-                                    Header="技术" />
-                    <my:NumericPair x:Name="np5"
-                                    Grid.Row="3"
-                                    Grid.Column="3"
-                                    Header="幸运" />
-                    <my:NumericPair x:Name="np8"
-                                    Grid.Row="3"
-                                    Grid.Column="4"
-                                    Header="移动"
-                                    PropertyLimit="20" />
                     <Button x:Name="button"
                             Grid.Row="4"
                             Grid.Column="5"
@@ -158,6 +131,22 @@
                             Grid.Column="1"
                             Click="DeleteButton_Click"
                             Content="删除" />
+                    <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4" IsReadOnly="True" SelectedIndex="0" >
+                        <my2:String>数值</my2:String>
+                        <my2:String>上限</my2:String>
+                        <my2:String>成长</my2:String>
+                    </ComboBox>
+                    <TextBox x:Name="txtComLine" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Margin="57,2,0,3"/>
+                    <Button Content="更新" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Click="UpdateButton_Click"/>
+                    <GroupBox Header="兵种属性" Grid.Column="4">
+                        <WrapPanel x:Name="clstype">
+                            
+                            <!--<WrapPanel.Resources>
+                                <DataTemplate DataType="my3:ClassTypes">                                    
+                                </DataTemplate>
+                            </WrapPanel.Resources>-->
+                        </WrapPanel>
+                    </GroupBox>
                 </Grid>
             </TabItem>
         </TabControl>

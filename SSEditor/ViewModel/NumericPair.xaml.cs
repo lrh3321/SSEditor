@@ -18,43 +18,62 @@ using System.Windows.Media;
 
 namespace SSEditor.ViewModel
 {
-	/// <summary>
-	/// Interaction logic for NumericPair.xaml
-	/// </summary>
-	public partial class NumericPair
-	{
-		public NumericPair()
-		{
-			InitializeComponent();
-		}
-		#region "DependencyProperties"
-		
-		public static readonly DependencyProperty PropertyPropertyValueProperty =
-			DependencyProperty.Register("PropertyPropertyValue", typeof(int), typeof(NumericPair),
-			                            new FrameworkPropertyMetadata(0));
-		
-		public int PropertyValue {
-			get { return (int)GetValue(PropertyPropertyValueProperty); }
-			set { SetValue(PropertyPropertyValueProperty, value); }
-		}
-		
-		public static readonly DependencyProperty PropertyLimitProperty =
-			DependencyProperty.Register("PropertyLimit", typeof(int), typeof(NumericPair),
-			                            new FrameworkPropertyMetadata(0));
-		
-		public int PropertyLimit {
-			get { return (int)GetValue(PropertyLimitProperty); }
-			set { SetValue(PropertyLimitProperty, value); }
-		}
-		
-		public static readonly DependencyProperty GrowthRateProperty =
-			DependencyProperty.Register("GrowthRate", typeof(int), typeof(NumericPair),
-			                            new FrameworkPropertyMetadata(0));
-		
-		public int GrowthRate {
-			get { return (int)GetValue(GrowthRateProperty); }
-			set { SetValue(GrowthRateProperty, value); }
-		}
-		#endregion
-	}
+    /// <summary>
+    /// Interaction logic for NumericPair.xaml
+    /// </summary>
+    public partial class NumericPair
+    {
+        public NumericPair()
+        {
+            InitializeComponent();
+
+            //nud1.SetBinding(null, null);
+            Binding myBinding = new Binding("Value");
+            myBinding.Source = nud1;
+            myBinding.Mode = BindingMode.TwoWay;
+            this.SetBinding(NumericPair.PropertyPropertyValueProperty, myBinding);
+
+            myBinding = new Binding("Value");
+            myBinding.Source = nud2;
+            myBinding.Mode = BindingMode.TwoWay;
+            this.SetBinding(NumericPair.PropertyLimitProperty, myBinding);
+
+            myBinding = new Binding("Value");
+            myBinding.Source = nud3;
+            myBinding.Mode = BindingMode.TwoWay;
+            this.SetBinding(NumericPair.GrowthRateProperty, myBinding);
+        }
+        #region "DependencyProperties"
+
+        public static readonly DependencyProperty PropertyPropertyValueProperty =
+            DependencyProperty.Register("PropertyPropertyValue", typeof(int), typeof(NumericPair),
+                                        new FrameworkPropertyMetadata(0));
+
+        public int PropertyValue
+        {
+            get { return (int)GetValue(PropertyPropertyValueProperty); }
+            set { SetValue(PropertyPropertyValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty PropertyLimitProperty =
+            DependencyProperty.Register("PropertyLimit", typeof(int), typeof(NumericPair),
+                                        new FrameworkPropertyMetadata(0));
+
+        public int PropertyLimit
+        {
+            get { return (int)GetValue(PropertyLimitProperty); }
+            set { SetValue(PropertyLimitProperty, value); }
+        }
+
+        public static readonly DependencyProperty GrowthRateProperty =
+            DependencyProperty.Register("GrowthRate", typeof(int), typeof(NumericPair),
+                                        new FrameworkPropertyMetadata(0));
+
+        public int GrowthRate
+        {
+            get { return (int)GetValue(GrowthRateProperty); }
+            set { SetValue(GrowthRateProperty, value); }
+        }
+        #endregion
+    }
 }
