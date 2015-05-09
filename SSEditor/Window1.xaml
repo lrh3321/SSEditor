@@ -7,7 +7,24 @@
         Title="SSEditor"
         Width="560"
         Height="480">
+    <Window.CommandBindings>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="OpenCommand_Executed" Command="Open"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="SaveCommand_Executed" Command="Save"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="SaveAsCommand_Executed" Command="SaveAs"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="CloseCommand_Executed" Command="Close"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="UndoCommand_Executed" Command="Undo"/>
+        <CommandBinding CanExecute="CommandBinding_CanExecute" Executed="RedoCommand_Executed" Command="Redo"/>
+    </Window.CommandBindings>
     <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top" >
+            <MenuItem Header="_File">
+                <MenuItem Command="Open"/>
+                <MenuItem Command="Save"/>
+                <MenuItem Command="SaveAs"/>
+                <Separator/>
+                <MenuItem Command="Close"/>
+            </MenuItem>
+        </Menu>
         <TabControl>
             <TabItem Header="Class">
                 <Grid>

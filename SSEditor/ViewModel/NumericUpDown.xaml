@@ -43,13 +43,6 @@
                                   Stretch="Fill"
                                   Stroke="{x:Null}" />
                         </Grid>
-                        <!--                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsFocused" Value="True" />
-                            <Trigger Property="IsDefaulted" Value="True" />
-                            <Trigger Property="IsMouseOver" Value="True" />
-                            <Trigger Property="IsPressed" Value="True" />
-                            <Trigger Property="IsEnabled" Value="False" />
-                        </ControlTemplate.Triggers>-->
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
