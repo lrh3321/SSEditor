@@ -56,7 +56,7 @@ namespace SSEditor
                 b.Child = cbos[i] = new ComboBox();
                 proficContainer.Children.Add(b);
             }
-
+            
             arr = new string[] { "HP", "力量", "魔力", "技术", "速度", "守备", "魔防", "幸运", "移动" };
             pairs = new NumericPair[arr.Length];
             for (int i = 0; i < arr.Length; i++)
@@ -86,16 +86,11 @@ namespace SSEditor
                 clstype.Children.Add(chks[i]);
             }
 
-            this.Loaded += Window1_Loaded;
+            this.Loaded += MainWindow_Loaded;
 
         }
-        //protected override void OnClosing(CancelEventArgs e)
-        //{
-        //    SaveScript();
-        //    base.OnClosing(e);
-        //}
 
-        private void Window1_Loaded(object sender, RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             m_classList = new ObservableCollection<Object.Class>();
 
@@ -103,7 +98,6 @@ namespace SSEditor
             lstClass.ItemsSource = m_classList;
             lstClass.SelectionChanged += LstClass_SelectionChanged;
         }
-
 
         private void LstClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
