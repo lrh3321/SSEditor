@@ -1,12 +1,4 @@
-﻿/*
- * 由SharpDevelop创建。
- * 用户： LRH3321
- * 日期: 2015-5-7
- * 时间: 11:11
- * 
- * 要改变这种模板请点击 工具|选项|代码编写|编辑标准头文件
- */
-using System;
+﻿using System;
 
 namespace SSEditor.Object
 {
@@ -57,18 +49,26 @@ namespace SSEditor.Object
         Consumables = 0x010,
         /// <summary>饰品</summary>
         Accessory = 0x100,
-        /// <summary>武器</summary>
-        Weapon = 0x1000,
         /// <summary>剑</summary>
         Sword = 0x1001,
-        /// <summary>斧</summary>
-        Axe = 0x1002,
-        /// <summary>枪</summary>
-        Spear = 0x1003,
-        /// <summary>弓</summary>
-        Bowl = 0x2000,
         /// <summary>魔导书</summary>
-        MagicBook = 0x4000,
+        MagicBook = 0x1002,
+        /// <summary>斧</summary>
+        Axe = 0x1010,
+        /// <summary>弓</summary>
+        Bowl = 0x1020,
+        /// <summary>枪</summary>
+        Spear = 0x1100,
+        /// <summary>暗器</summary>
+		HiddenWeapon = 0x1200,
+        /// <summary>魔剑</summary>
+		MagicSword = Sword|MagicBook,
+        /// <summary>斧弓</summary>
+		AxeBowl = Axe|Bowl,
+        /// <summary>暗枪</summary>
+		HiddenSpear = Spear|HiddenWeapon,
+        /// <summary>武器</summary>
+        Weapon = MagicSword|AxeBowl|HiddenSpear,
         /// <summary>石</summary>
         Stone = 0x8000,
         /// <summary>魔杖</summary>
