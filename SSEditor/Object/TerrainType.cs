@@ -19,9 +19,22 @@ namespace SSEditor.Object
 		Plain,
 		/// <summary>墙</summary>
 		Wall,
-		Forest,Village,Town,Pillar,Sea,Ruins
-		/// <summary>小山</summary>
-		Hill,
+		/// <summary>林</summary>
+		Forest,
+        /// <summary>村</summary>
+        Village,
+        /// <summary>城</summary>
+        Town,
+        /// <summary>柱</summary>
+        Pillar,
+        /// <summary>海</summary>
+        Sea,
+		/// <summary>海滩</summary>
+        Beach,
+        /// <summary>废墟</summary>
+        Ruins,
+        /// <summary>小山</summary>
+        Hill,
 		/// <summary>高山</summary>
 		Mountain,
 		/// <summary>城门</summary>
