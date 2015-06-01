@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib">
+	<sys:String x:Key="StrRetry">_重试</sys:String>
+	<sys:String x:Key="StrInstruction">使用W、A、S、D 或者光标键控制蛇移动。</sys:String>
+	<x:Array x:Key="cboArr" Type="sys:String">
+		<sys:String>作死</sys:String>
+		<sys:String>困难</sys:String>
+		<sys:String>一般</sys:String>
+		<sys:String>简单</sys:String>
+		<sys:String>轻松</sys:String>
+	</x:Array>
+	
+</ResourceDictionary>

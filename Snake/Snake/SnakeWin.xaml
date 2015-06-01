@@ -6,14 +6,15 @@
 	Width="Auto"
 	Height="auto"
 	SizeToContent="WidthAndHeight"
+	
 >
 	<Grid
 	Width="Auto"
 	Height="auto">
 		<StackPanel>
-			<TextBlock Text="W、S、A、D"/>
-			<Button  Click="Button_Click" HorizontalAlignment="Left">
-				<AccessText Text="_ReTry"/>
+			<TextBlock Text="{DynamicResource StrInstruction}"/>
+			<Button Click="Button_Click" HorizontalAlignment="Left">
+				<AccessText Text="{DynamicResource StrRetry}"/>
 			</Button>
 			<BulletDecorator>
 				<BulletDecorator.Bullet>

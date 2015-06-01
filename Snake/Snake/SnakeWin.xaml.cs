@@ -63,25 +63,27 @@ namespace Snake
 		void IntCombo()
 		{
 			cboTimespan.Focusable=false;
+			var arr=FindResource("cboArr") as string[];
+			int i=0;
 			cboTimespan.Items.Add(
 				new ComboBoxItem(){DataContext=1000000L
-						,Content="作死"}
+						,Content=arr[i++]}
 			);
 			cboTimespan.Items.Add(
 				new ComboBoxItem(){DataContext=2000000L
-						,Content="困难"}
+						,Content=arr[i++]}
 			);
 			cboTimespan.Items.Add(
 				new ComboBoxItem(){DataContext=5000000L
-						,Content="一般"}
+						,Content=arr[i++]}
 			);
 			cboTimespan.Items.Add(
 				new ComboBoxItem(){DataContext=10000000L
-						,Content="简单"}
+						,Content=arr[i++]}
 			);
 			cboTimespan.Items.Add(
 				new ComboBoxItem(){DataContext=12000000L
-						,Content="轻松"}
+						,Content=arr[i++]}
 			);
 			cboTimespan.SelectedIndex = 2;
 			cboTimespan.SelectionChanged += ComboBox_SelectionChanged;
