@@ -1,8 +1,17 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 14.00
-# Visual Studio 2015
-# SharpDevelop 4.4
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSEditor", "SSEditor\SSEditor.csproj", "{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluent dotNET 4.0", "Fluent.Ribbon\Fluent\Fluent dotNET 4.0.csproj", "{281095D8-D8B3-4A7F-8896-646483FB685C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xceed.Wpf.Toolkit", "WpfExtendedToolkit\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{72E591D6-8F83-4D8C-8F67-9C325E623234}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xceed.Wpf.AvalonDock", "WpfExtendedToolkit\Src\Xceed.Wpf.AvalonDock\Xceed.Wpf.AvalonDock.csproj", "{DB81988F-E0F2-45A0-A1FD-8C37F3D35244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xceed.Wpf.AvalonDock.Themes.Aero", "WpfExtendedToolkit\Src\Xceed.Wpf.AvalonDock.Themes.Aero\Xceed.Wpf.AvalonDock.Themes.Aero.csproj", "{BA72CCE0-A9FB-4995-B496-7FEC5C87B85B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,9 +19,28 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{281095D8-D8B3-4A7F-8896-646483FB685C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{281095D8-D8B3-4A7F-8896-646483FB685C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{281095D8-D8B3-4A7F-8896-646483FB685C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E591D6-8F83-4D8C-8F67-9C325E623234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB81988F-E0F2-45A0-A1FD-8C37F3D35244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB81988F-E0F2-45A0-A1FD-8C37F3D35244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB81988F-E0F2-45A0-A1FD-8C37F3D35244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB81988F-E0F2-45A0-A1FD-8C37F3D35244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA72CCE0-A9FB-4995-B496-7FEC5C87B85B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA72CCE0-A9FB-4995-B496-7FEC5C87B85B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA72CCE0-A9FB-4995-B496-7FEC5C87B85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA72CCE0-A9FB-4995-B496-7FEC5C87B85B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
