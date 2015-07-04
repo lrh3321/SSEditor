@@ -1,6 +1,6 @@
 [submodule "Fluent.Ribbon"]
 	path = Fluent.Ribbon
-	url = http://github.com/fluentribbon/Fluent.Ribbon.git
+	url = git://github.com/fluentribbon/Fluent.Ribbon.git
 [submodule "WpfExtendedToolkit"]
 	path = WpfExtendedToolkit
-	url = http://github.com/dotnetprojects/WpfExtendedToolkit.git
+	url = git://github.com/dotnetprojects/WpfExtendedToolkit.git
