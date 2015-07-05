@@ -4,3 +4,6 @@
 [submodule "WpfExtendedToolkit"]
 	path = WpfExtendedToolkit
 	url = git://github.com/dotnetprojects/WpfExtendedToolkit.git
+[submodule "SharpZipLib"]
+	path = SharpZipLib
+	url = git://github.com/icsharpcode/SharpZipLib.git
