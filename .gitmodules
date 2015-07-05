@@ -1,9 +1,9 @@
-[submodule "Fluent.Ribbon"]
-	path = Fluent.Ribbon
-	url = git://github.com/fluentribbon/Fluent.Ribbon.git
-[submodule "WpfExtendedToolkit"]
-	path = WpfExtendedToolkit
-	url = git://github.com/dotnetprojects/WpfExtendedToolkit.git
 [submodule "SharpZipLib"]
 	path = SharpZipLib
 	url = git://github.com/icsharpcode/SharpZipLib.git
+[submodule "WpfExtendedToolkit"]
+	path = WpfExtendedToolkit
+	url = git://github.com/dotnetprojects/WpfExtendedToolkit.git
+[submodule "Fluent.Ribbon"]
+	path = Fluent.Ribbon
+	url = git://github.com/fluentribbon/Fluent.Ribbon.git
