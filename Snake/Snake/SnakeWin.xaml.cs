@@ -23,8 +23,8 @@ namespace Snake
 	public partial class SnakeWin : Window
 	{
 		DispatcherTimer timer;
-		VisualBrush bgBrush;
-		DrawingVisual drawingVisual;
+//		VisualBrush bgBrush;
+//		DrawingVisual drawingVisual;
 		bool[,] chumks;
 		List<Point> m_snake;
 		Point bounus;
@@ -41,11 +41,11 @@ namespace Snake
 			timer=new DispatcherTimer(DispatcherPriority.Normal );
 			timer.Interval=new TimeSpan(0,0,0,0,(int)50/3);
 			
-			drawingVisual=new DrawingVisual();
-			
-			bgBrush=new VisualBrush( );
-			bgBrush.Visual=drawingVisual;
-			canvas.Background=bgBrush;
+//			drawingVisual=new DrawingVisual();
+//			
+//			bgBrush=new VisualBrush( );
+//			bgBrush.Visual=drawingVisual;
+//			canvas.Background=bgBrush;
 			chumks=new bool[20,20];
 			m_snake=new List<Point>();
 			m_snake.AddRange(new Point[]{new Point(2,0),new Point(1,0),new Point(1,0)});
@@ -58,6 +58,8 @@ namespace Snake
 			this.Loaded+= form_Loaded;
 
 			IntCombo();
+			
+			gcanvas.m_snake=this.m_snake;
 		}
 
 		void IntCombo()
@@ -91,13 +93,13 @@ namespace Snake
 		
 		void CreateBounus(){
 			Point p;
-			do{
-				
+			do{				
 				int x=rand.Next(20);
 				int y=rand.Next(20);
-				p=new Point(x,y);}
+				p=new Point(x,y);
+			}
 			while (m_snake.Contains(p)|(bounus==p)) ;
-			bounus=p;
+			gcanvas.bounus=bounus=p;
 			
 		}
 		
@@ -106,8 +108,7 @@ namespace Snake
 			timer.Start();
 		}
 		void timer_Tick(object sender, EventArgs e) {
-			UpdateInput();
-			
+			UpdateInput();			
 
 			Update();
 
@@ -115,34 +116,31 @@ namespace Snake
 			
 		}
 
+		
 		void Render()
 		{
 
-			var context = drawingVisual.RenderOpen();
+//			var context = drawingVisual.RenderOpen();
+//			
+//			context.DrawRectangle(Brushes.Transparent,null, new Rect(0, 0, 400, 400));
+//			
+//			context.DrawRectangle(Brushes.White, new Pen(Brushes.Green, 3.0),
+//			                      new Rect(20 * bounus.X+3, 20 * bounus.Y+3, 14, 14));
+//			
+//		
+//			foreach (var element in m_snake) {
+//				context.DrawRectangle(Brushes.White, new Pen(Brushes.Black, 1.0),
+//				                      new Rect(20 * element.X, 20 * element.Y, 20, 20));
+//				context.DrawRectangle(Brushes.Black, new Pen(Brushes.Black, 1.0),
+//				                      new Rect(20 * element.X+5, 20 * element.Y+5, 10, 10));
+//			}
+//			
+//			context.Close();
+			gcanvas.InvalidateVisual();
 			
-			 
-			
-			context.DrawRectangle(Brushes.Transparent,null, new Rect(0, 0, 400, 400));
-			
-			context.DrawRectangle(Brushes.White, new Pen(Brushes.Green, 3.0),
-			                      new Rect(20 * bounus.X+3, 20 * bounus.Y+3, 14, 14));
-			
-		
-			foreach (var element in m_snake) {
-				context.DrawRectangle(Brushes.White, new Pen(Brushes.Black, 1.0),
-				                      new Rect(20 * element.X, 20 * element.Y, 20, 20));
-				context.DrawRectangle(Brushes.Black, new Pen(Brushes.Black, 1.0),
-				                      new Rect(20 * element.X+5, 20 * element.Y+5, 10, 10));
-			}
-//			context.DrawRectangle(Brushes.Black,new Pen(Brushes.Black,1d),new Rect(0,0,20,20));
-//			context.DrawRectangle(Brushes.Black,new Pen(Brushes.Black,1d),new Rect(20,40,20,20));
-//			context.DrawRectangle(Brushes.Black,new Pen(Brushes.Green,1d),new Rect(0,0,10,10));
-//			context.DrawText(new Formatted
-			context.Close();
 		}
 
-		void Update()
-			
+		void Update()			
 		{
 //			m_spanTick=100000;
 			if ((DateTime.Now.Ticks - m_lastTick) > m_spanTick)
@@ -179,8 +177,6 @@ namespace Snake
 					}
 					m_snake.Insert(0, s);
 				}
-
-
 
 			}
 //			else{
