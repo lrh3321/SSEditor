@@ -28,23 +28,13 @@ namespace BSMinecraftServerManager
 		public Window1()
 		{
 			InitializeComponent();
-			
 		}
 		
 		void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			pg.SelectedObject = SystemPara.CurrentProperties;
 			
-			System.Diagnostics.Debug.WriteLine(SystemPara.CurrentProperties.GetObjectData());
-			
-//			var test =  SystemPara.CurrentProperties;
-//
-//			PropertyInfo[] pinfos = typeof(ServerProperties).GetProperties();
-//
-//			foreach (var pinfo in pinfos) {
-//				Debug.WriteLine(Convert.ChangeType( pinfo.GetValue(test,null),pinfo.PropertyType));
-//			}
-			
+			System.Diagnostics.Debug.WriteLine( SystemPara.CurrentProperties.Serialize());
 		}
 	}
 }

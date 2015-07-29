@@ -15,6 +15,8 @@ namespace BSMinecraftServerManager
 	/// </summary>
 	public interface ITextSerializable
 	{
-		string GetObjectData();
+		string Serialize();
+		
+		void Deserialize(string data);
 	}
 }

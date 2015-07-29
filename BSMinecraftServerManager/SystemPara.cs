@@ -8,6 +8,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Text;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
@@ -15,7 +16,17 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 namespace BSMinecraftServerManager
 {
 	internal static class SystemPara{
-		static ServerProperties _current =new ServerProperties();
+		
+		static ServerProperties _current;
+		
+		static SystemPara()
+		{
+			_current =new ServerProperties();
+			if (File.Exists("server.properties")) {
+				_current.Deserialize(File.ReadAllText("server.properties"));				
+			}			
+		}
+		
 		public static ServerProperties CurrentProperties{
 			get{
 				return _current;
