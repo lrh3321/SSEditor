@@ -7,3 +7,6 @@
 [submodule "Fluent.Ribbon"]
 	path = Fluent.Ribbon
 	url = git://github.com/fluentribbon/Fluent.Ribbon.git
+[submodule "AvalonEdit"]
+	path = AvalonEdit
+	url = git://github.com/icsharpcode/AvalonEdit.git
