@@ -1,15 +1,45 @@
-<Window x:Class="BSMinecraftServerManager.Window1"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:local="clr-namespace:BSMinecraftServerManager"
-        Title="BSMinecraftServerManager" Height="300" Width="300"
-	Loaded="Window_Loaded"
->
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window
+	x:Class="BSMinecraftServerManager.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:local="clr-namespace:BSMinecraftServerManager"
+	Icon="{DynamicResource Icon}"
+	Title="BSMinecraftServerManager"
+	Height="480"
+	Width="480"
+	Loaded="Window_Loaded">
 	<Grid>
-		<toolkit:PropertyGrid x:Name="pg" AutoGenerateProperties="True" >
-		
-		</toolkit:PropertyGrid>
+		<TabControl>
+			<TabItem
+				Header="{DynamicResource NormalSettings}">
+				<Grid>
+					<Button
+						x:Name="btnStart"
+						Content="{DynamicResource StartServer}"
+						Click="BtnStart_Click"
+						Grid.Column="0"
+						Grid.Row="0"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Bottom"
+						Width="75"
+						Height="23" />
+					<Button
+						x:Name="btnStop"
+						Content="{DynamicResource StopServer}"
+						Click="BtnStop_Click"
+						Grid.Column="0"
+						Grid.Row="0"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Bottom"
+						Margin="120,0,0,0"
+						Width="75"
+						Height="23" />
+				</Grid>
+			</TabItem>
+			<TabItem
+				Header="{DynamicResource ServerSettings}">
+				<toolkit:PropertyGrid
+					x:Name="pg"
+					AutoGenerateProperties="True"></toolkit:PropertyGrid>
+			</TabItem>
+		</TabControl>
 	</Grid>
 </Window>

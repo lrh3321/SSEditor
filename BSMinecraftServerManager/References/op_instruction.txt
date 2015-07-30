@@ -1,0 +1,126 @@
+管理员指令：
+op [ID] 给予某个玩家OP(这是真·OP，拥有所有的最高，所有的，包括去掉别人的OP和给别人OP)deop [ID] 消除某个玩家的OP
+gamemode [01] 给予自己生存创造模式，有人说给予别人也可以gm [ID] 1，但是我试过是不行
+whitelist add [ID] 给予某个玩家白名单whitelist remove [ID] 接触某个玩家的白名单
+ban [ID] 封禁某个玩家
+ban [IP] 封禁这个地址的所有号
+tempban [IDIP] [time] 封禁某个ID或者IP一段时间，time里面这样写：1s就是一秒，1m,一分钟，1h，一小时，1d就是1天,1w,一个星期，mo,月，y,年
+比如，封禁demon_k8这个玩家2个星期 (挨挨挨~~~!!不要啊~~~)
+输入tempban demon_k8 2w
+mute [ID] [time] 禁言某个玩家一段时间
+unban [IDIP] 解封 ID或者IP
+setworth [物品名字物品id] [数量] 设定一个东西的系统价格，这个物品名字或者ID都行
+worth [ID] 查看系统价格
+不写物品id默认为查看手上的物品价格
+itemdb
+查询你物品的名称和ID
+手上拿着的这个
+mail [readclearsend] [ID] [语句] 读取，清除，发送，某个离线玩家的留言
+msg [语句] 私聊
+near
+查看附近的玩家
+reply [语句] 回复最后一个私聊你的玩家
+whois [nicknameID] 查看某个玩家的用户信息，ID，akf信息，nick名，如果他给自己加了nick的话seen
+查看玩家最后一次下线前所在的坐标
+sudo [ID] [指令] 让某个玩家执行一段命令，比如sudo demon_k8 suicide
+让这个玩家自杀。。。但是OP不能强制OP执行命令
+tp [ID] 强制飞到某个玩家的身边
+tphere [ID] 让某个玩家强制飞到你身边
+tpall [ID] 让所有玩家飞到你身边，包括OP
+tppos [x] [y] [z] 传送到x,y,z
+spawner [怪物的英文名] 改变刷怪笼的刷新物，反正小熊试过是无用的- -manuadd 名字 1-0
+给某人创造或者生存money give  [钱数] 给与全部人xxx钱
+代表全部人，相反的，give  xx xx也可以用
+tppos X Y Z 传送到某个坐标
+服务器类：
+say [语句] 让服务器发一段所有人可见的话，并且是紫色字体的
+ping
+测试你的服务器的ping值
+gc
+查看服务器信息
+rules [数量] 查看服务器第几页的规矩
+essentials [reloaddebug] 显示插件版本或者重读
+backup
+备份服务器。需要配置备份脚本
+setspawn
+在你站着的这个地方设置重生点
+setwarp [名字] 标注一块地区，以后你可以用warp [名字] 来飞到这个你标注过的地方，相当于tp到领地
+baltop
+查看财富排行榜
+compass
+显示你当前的方位
+depth [ID] 显示你当前的高度，z轴高度
+getpos [ID] 显示当前的坐标x,y
+help [数量] 查看第几页的帮助
+helpop [语句] Op留言求助
+world
+切换世界为nether、normal。地狱，END等等，具体的我也不知道- -我不敢这么玩，我只试过一次，然后人飞到了地狱
+remove drops 99999 清空掉落物品
+killall mobs 杀光怪物
+服务器没事执行下面指令不会卡服
+remove drops 999999
+killall mobs
+作弊技能类：
+vanish
+隐身(人家最~~~~喜欢用的了~~)
+fireball
+释放地狱轰炸机的火球，从OP的口里吐出来
+shock [玩家ID] 雷击某个玩家，如果直接shock 就在你的准心对着的地方给予雷击
+nuke [ID] 在某个玩家上方放核弹，其实就是一堆被激活的TNT从天上飞下来
+antioch
+在准心所指的地方放一颗炸弹
+butcher
+杀死附近的全部怪物
+killall
+杀死附近的全部生物，包括人类
+kill [ID] 杀死某个玩家，= =这个我没用过。。我只喜欢隐身背后放苦力怕娘~(≥▽≤)(炸飞)
+咳咳咳。。。。
+suicide
+自杀。。。
+burn [ID] 让某个玩家起火
+ext [ID] 给某个玩家灭火
+jump
+直接跳跃到准心所指地方，长途旅行很实用
+fly [ID] 给予某个玩家飞行的权限
+up [数量] 把自己提升到某个高度，最大256，脚下会生成一块玻璃垫着你
+seen [ID] 查看某人最后退出的时间
+weather [stormsun] 改变天气
+rain off
+停雨，这个更简单
+time set [xxxx] 设置时间，比如time set 0600就是设置时间为早上6点
+eco [givetakereset] [ID] [数量] 给予拿走重设，某个玩家的钱
+heal [ID] 回复某个玩家的生命
+ptime [resetlistdaynightdawnxxxx5amxxxxticks] [ID] 更改一个玩家的时间，是指所有玩家，这样他们所看到的时间和你所看到的时间是不一样的。
+在时间前加上@，比如@day，就变成锁定这个玩家看到的世界永远是白天，但是实际时间到了晚上，玩家就会看到白天的骷髅怪不会烧着，他就会很纳闷
+unlimited [listitemclear] [ID] 查看，给予，清楚，某个玩家的无限物品
+nick [称号] 给自己换称号。如果你换成Bigbear，就会显示你的名字是“~Bigbear”但是你的ID还是Littlebear(切~)
+powertool [语句] 快速在聊天框里输入一行语句比如：
+手拿一个马鞍，然后输入powertool jump
+以后你拿着马鞍左键一下就会直接使用这个命令”jump”
+你想快速说话，powertool 小熊万岁
+只要左键一下就能马上在聊天里出现，小熊万岁
+powertooltoggle
+清除所有的powertoll
+forestgen
+在自己身旁形成森林
+pumpkins
+在自己身旁形成南瓜林
+snow
+在自己的身旁成为雪后的样子
+thaw
+融雪、冰
+tree [树的形状] big 大树 ewquoia
+红木
+Tall sequoia 高大的红木
+Birch 衫树
+Random 随机
+enchant [附魔属性] [等级] 用这个命令能给你手里的工具增加一个附魔属性。如果不写附魔名称则会列出附魔列表。
+怒杀小学生类：
+setjail [名字] 设置一个监狱
+togglejail [名字] 把玩家送进xxx监狱，永久封存
+tjail [ID] [监狱名字] [时间] 把玩家扔到指定的监狱多少时间.1d, 1h ,1w 等等
+unjail [ID] [监狱名字] [时间] 多久后把玩家解放出来
+deljail [ID] 使某玩家从监狱中释放出来
+invsee
+查看某个玩家的背包，并且可以移动
+clearinventory [ID] 清空某个玩家的背包socialspy [ID] 查看他人隐私，包括锁东西的信息，邮件，私聊等等
