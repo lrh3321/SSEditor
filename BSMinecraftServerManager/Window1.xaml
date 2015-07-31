@@ -33,7 +33,8 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition/>
-			<RowDefinition Height="40"/>
+			<!--<RowDefinition Height="Auto"/>
+			<RowDefinition Height="40"/>-->
 		</Grid.RowDefinitions>
 		<Menu Grid.Row="0">
 			<MenuItem Header="File(_F)">
@@ -84,7 +85,7 @@
 								<Button Content="..."
 								        DockPanel.Dock="Right"
 								        Width="auto"/>
-								<TextBox x:Name="txtJre" Text="Jre path:"/>
+								<TextBox x:Name="txtJre" Text=""/>
 							</DockPanel>
 							<DockPanel>
 								<TextBlock Text="{DynamicResource Launcher}"
@@ -96,7 +97,7 @@
 								<Button Content="..."
 								        DockPanel.Dock="Right"
 								        Width="auto"/>
-								<TextBox x:Name="txtJar" Text="Jar path:"/>
+								<TextBox x:Name="txtJar" Text=""/>
 							</DockPanel>
 						</StackPanel>
 					</Expander>
@@ -136,14 +137,34 @@
 					<Button Grid.Row="1"
 					        HorizontalAlignment="Left"
 					        Content="{DynamicResource CancelKey}"
-					        Margin="30,0"/>
+					        Margin="80,0"/>
 				</Grid>
 			</TabItem>
+			
+			<TabItem Header="ViewLog" x:Name="logView">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<avalonEdit:TextEditor x:Name="txtEditor"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						HorizontalScrollBarVisibility="Auto"
+						Grid.Row="0"
+						IsReadOnly="True"/>
+					<DockPanel/>
+				
+				</Grid>
+			
+			</TabItem>
+		
 		</TabControl>
-		<avalonEdit:TextEditor x:Name="txtEditor"
-			IsReadOnly="True"
-			Grid.Row="2"
-		/>
+		
+		<!--		<GridSplitter Background="LightSteelBlue"
+		              Grid.Row="2"
+		              HorizontalAlignment="Stretch"
+		              Height="2"/>-->
 	
 	</Grid>
 </Window>

@@ -21,6 +21,7 @@
 	<Color name="Literals" foreground="Black" fontWeight="bold" />
 	<Color name="CommentTags" foreground="Red" fontWeight="bold" fontStyle="italic" />
 	<Color name="JavaDocTags" foreground="DarkGray" fontWeight="bold" fontStyle="italic" />
+	<Color name="Times" foreground="DarkGray" fontWeight="bold"/>
 	<RuleSet ignoreCase="false">
 		<Rule color="Punctuation">
 		[?,.()\[\]{}+\-/%*&lt;&gt;^!|]+
@@ -126,11 +127,33 @@
 		</Span>
 		<Rule color="MethodName">[\d\w_]+(?=(\s*\())</Rule>
 		<Rule color="Digits">\b0[xX][0-9a-fA-F]+|(\b\d+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?</Rule>
-	
-		<Span color="Digits" ruleSet="TestSet">
+		
+		<Rule color="Times">\b\d{1,2}:\d{1,2}:\d{1,2}</Rule>
+		<Span color="MethodName" ruleSet="TestSet">
 			<Begin>\[</Begin>
 			<End>]</End>
 		</Span>
+		
+		<Keywords color="Package">			
+			<Word>SURVIVAL</Word>
+			<Word>CREATIVE</Word>
+			<Word>ADVENTURE</Word>
+			<Word>SPECTATOR</Word>
+			
+			<Word>DEFAULT</Word>
+			<Word>FLAT</Word>
+			<Word>LARGEBIOMES</Word>
+			<Word>AMPLIFIED</Word>
+			<Word>CUSTOMIZED</Word>
+		</Keywords>
+		
+		<Span color="JumpStatements" ruleSet="TestSet">
+			<Begin>Preparing</Begin>
+		</Span>
+		<Span color="SelectionStatements" ruleSet="TestSet">
+			<Begin>Input:</Begin>
+		</Span>
+	
 	</RuleSet>
 	<RuleSet name="TestSet" ignoreCase="true">
 		<Keywords color="CommentTags">

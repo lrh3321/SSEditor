@@ -16,12 +16,12 @@ namespace BSMinecraftServerManager
 		public string JarFile;
 		public string Extras;
 		
-		public JavaArgument(int maxMemorySize, int minMemorySize, string extras, string jarFile)
+		public JavaArgument(int maxMemorySize, int minMemorySize, string jarFile, string extras)
 		{
 			this.MaxMemorySize = maxMemorySize;
 			this.MinMemorySize = minMemorySize;
-			this.Extras = extras;
 			this.JarFile = jarFile;
+			this.Extras = extras;
 		}
 		
 		public override string ToString()
