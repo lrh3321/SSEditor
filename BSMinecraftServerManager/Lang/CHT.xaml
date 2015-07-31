@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+>
+	<BitmapImage x:Key="Icon" UriSource="../minecraft.ico"/>
+	<sys:String x:Key="ServerSettings">服务器设置</sys:String>
+	<sys:String x:Key="NormalSettings">一般设置</sys:String>
+	<sys:String x:Key="StartServer">启动</sys:String>
+	<sys:String x:Key="StopServer">停止</sys:String>
+</ResourceDictionary>

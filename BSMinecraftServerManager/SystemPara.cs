@@ -23,14 +23,24 @@ namespace BSMinecraftServerManager
 		{
 			_current =new ServerProperties();
 			if (File.Exists("server.properties")) {
-				_current.Deserialize(File.ReadAllText("server.properties"));				
-			}			
+				_current.Deserialize(File.ReadAllText("server.properties"));
+			}
 		}
 		
 		public static ServerProperties CurrentProperties{
 			get{
 				return _current;
 			}
+		}
+		
+		public static void Reload(){
+			
+			if (File.Exists("server.properties")) {
+				_current.Deserialize(File.ReadAllText("server.properties"));
+			}else{
+				_current =new ServerProperties();
+				
+			}			
 		}
 	}
 }

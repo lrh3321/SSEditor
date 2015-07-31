@@ -32,19 +32,25 @@ namespace BSMinecraftServerManager
 		public void ChangeLanguage(Langue lan)
 		{
 			this.Resources.BeginInit();
-			//if (Enum.IsDefined(typeof(Langue),lan))
 			{
-				if (this.Resources.MergedDictionaries.Count > 0)
-				{
-					this.Resources.MergedDictionaries.RemoveAt(0);
-				}
-				this.Resources.MergedDictionaries.Add(
-					new ResourceDictionary {
+				try {
+					var res = new ResourceDictionary {
 						Source = new Uri("pack://application:,,,/" +
 						                 "BSMinecraftServerManager;component/Lang/" +
 						                 lan.ToString() +
 						                 ".xaml")
-					});
+					};
+					
+					if (this.Resources.MergedDictionaries.Count > 0)
+						this.Resources.MergedDictionaries.RemoveAt(0);
+					
+					
+					this.Resources.MergedDictionaries.Insert(0,res);
+					m_lan = lan;
+					
+				} catch (Exception) {
+					
+				}
 			}
 
 			this.Resources.EndInit();

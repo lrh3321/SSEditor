@@ -17,6 +17,13 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
+using System.Globalization;
+using System.Xml;
+using System.IO;
+
+using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 
 namespace BSMinecraftServerManager
 {
@@ -25,6 +32,8 @@ namespace BSMinecraftServerManager
 	/// </summary>
 	public partial class Window1 : Window
 	{
+		Process javaProcess;
+		
 		public Window1()
 		{
 			InitializeComponent();
@@ -32,16 +41,37 @@ namespace BSMinecraftServerManager
 		
 		void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			pg.SelectedObject = SystemPara.CurrentProperties;
+//			pg.SelectedObject = SystemPara.CurrentProperties;
 			
-			System.Diagnostics.Debug.WriteLine( SystemPara.CurrentProperties.Serialize());
+//			System.Diagnostics.Debug.WriteLine( SystemPara.CurrentProperties.Serialize());
 			
+//			mLan.ItemsSource =Enum.GetNames(typeof(Langue));
+			txtJre.Text = ExtensionMethods.GetJavaHome();
+			var lan = (App.Current as App).Langueage;
+			MenuItem mi = null;
+			foreach (Langue element in Enum.GetValues(typeof(Langue))) {
+				menuChangeLangue.Items.Add(
+					mi=new MenuItem(){
+						Header = element.ToString(),
+						DataContext = element,
+						IsCheckable = false
+					}
+				);
+				if (element == lan) {
+					mi.IsChecked =true;
+				}
+			}
 			
+			XshdSyntaxDefinition xshd;
 			
-			
+			using (Stream s = BSMinecraftServerManager.Resources.OpenStream("JavaLog.xshd")) {
+				using (XmlTextReader reader = new XmlTextReader(s)) {
+					xshd = HighlightingLoader.LoadXshd(reader);
+				}
+//			HighlightingManager.Instance.RegisterHighlighting("",null,
+				txtEditor.SyntaxHighlighting = HighlightingLoader.Load(xshd,HighlightingManager.Instance);
+			}
 		}
-		
-		Process javaProcess;
 		
 		void BtnStart_Click(object sender, RoutedEventArgs e)
 		{
@@ -73,9 +103,12 @@ namespace BSMinecraftServerManager
 		void BtnStop_Click(object sender, RoutedEventArgs e)
 		{
 			if (javaProcess!=null) {
-				for (int i = 1; i < 10; i++) {
-					javaProcess.StandardInput.WriteLine("help "+i.ToString());
-				}
+				javaProcess.StandardInput.WriteLine("stop");
+				javaProcess.WaitForExit();
+				javaProcess = null;
+//				for (int i = 1; i < 10; i++) {
+//					javaProcess.StandardInput.WriteLine("help "+i.ToString());
+//				}
 			}
 			
 		}
@@ -86,6 +119,15 @@ namespace BSMinecraftServerManager
 				return;
 			}
 			Debug.WriteLine(e.Data);
+			Dispatcher.Invoke(DispatcherPriority.Normal,
+			                  new Action(()=>{
+			                             	txtEditor.AppendText(e.Data+"\r\n");
+			                             }
+			                            ));
+		}
+		
+		bool VerifySettings(){
+			return true;
 		}
 		
 		protected override void OnClosed(EventArgs e)
@@ -94,7 +136,37 @@ namespace BSMinecraftServerManager
 				javaProcess.StandardInput.WriteLine("stop");
 				javaProcess.WaitForExit();
 			}
+
 			base.OnClosed(e);
 		}
+		
+		void MenuChangeLangue_Click(object sender, RoutedEventArgs e)
+		{
+			MenuItem mi = e.OriginalSource as MenuItem;
+			var val = (Langue)mi.DataContext;
+			var oldVal = (App.Current as App).Langueage;
+			if (val == oldVal) {
+				return;
+			}
+			(App.Current as App).ChangeLanguage( val);
+			foreach (MenuItem element in menuChangeLangue.Items) {
+				if (element.IsChecked) {
+					element.IsChecked = false;
+					break;
+				}
+			}
+			mi.IsChecked = true;
+//			Debug.WriteLine(sender);
+		}
+		
+		void TabItem_GotFocus(object sender, RoutedEventArgs e)
+		{
+			if (pg.SelectedObject == null) {
+				pg.SelectedObject = SystemPara.CurrentProperties;
+			}
+		}
+		
 	}
+	
+
 }
