@@ -1,0 +1,174 @@
+<Window x:Class="BSMinecraftServerManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+        xmlns:local="clr-namespace:BSMinecraftServerManager"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="BSMinecraftServerManager"
+        Width="480"
+        Height="480"
+        Icon="{DynamicResource Icon}"
+        Loaded="Window_Loaded">
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="SelectFileCommond_Executed" />
+
+    </Window.CommandBindings>
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="23" />
+            <Setter Property="Width" Value="75" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="VerticalSeparator" TargetType="Separator">
+            <Setter Property="Height" Value="10" />
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="90" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <!--<RowDefinition Height="Auto"/>
+			<RowDefinition Height="40"/>-->
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File(_F)">
+                <Separator />
+                <MenuItem Header="Exit(_E)" />
+            </MenuItem>
+            <MenuItem x:Name="menuChangeLangue"
+                      Header="{DynamicResource ChangeLang}"
+                      MenuItem.Click="MenuChangeLangue_Click" />
+            <MenuItem Header="{DynamicResource About}" />
+        </Menu>
+        <TabControl Grid.Row="1">
+            <TabItem Header="{DynamicResource NormalSettings}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Expander Grid.Row="0"
+                              HorizontalAlignment="Stretch"
+                              Header="{DynamicResource JavaVMSettings}"
+                              IsExpanded="True">
+                        <StackPanel Orientation="Vertical">
+                            <WrapPanel HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Top"
+                                       Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="{DynamicResource MaxMemory}" />
+                                <toolkit:ShortUpDown x:Name="maxMem" Value="1024" />
+                                <Separator Style="{StaticResource VerticalSeparator}" />
+                                <TextBlock VerticalAlignment="Center" Text="{DynamicResource MinMemory}" />
+                                <toolkit:ShortUpDown x:Name="minMem" Value="1024" />
+                                <Separator Style="{StaticResource VerticalSeparator}" />
+                                <CheckBox x:Name="chkNogui"
+                                          Content="{DynamicResource NoGui}"
+                                          IsChecked="True" />
+                            </WrapPanel>
+                            <DockPanel>
+                                <TextBlock VerticalAlignment="Center"
+                                           DockPanel.Dock="Left"
+                                           Text="{DynamicResource JrePath}" />
+                                <Button Width="auto"
+                                        Content="{DynamicResource AutoDetected}"
+                                        DockPanel.Dock="Right" />
+                                <Button Width="auto"
+                                        Command="Open"
+                                        CommandParameter="JrePath"
+                                        Content="..."
+                                        DockPanel.Dock="Right" />
+                                <TextBox x:Name="txtJre" Text="" />
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBlock VerticalAlignment="Center"
+                                           DockPanel.Dock="Left"
+                                           Text="{DynamicResource Launcher}" />
+                                <Button Width="auto"
+                                        Content="{DynamicResource AutoDetected}"
+                                        DockPanel.Dock="Right" />
+                                <Button Width="auto"
+                                        Command="Open"
+                                        CommandParameter="Launcher"
+                                        Content="..."
+                                        DockPanel.Dock="Right" />
+                                <TextBox x:Name="txtJar" Text="" />
+                            </DockPanel>
+                        </StackPanel>
+                    </Expander>
+                    <Button x:Name="btnStart"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Click="BtnStart_Click"
+                            Content="{DynamicResource StartServer}" />
+                    <Button x:Name="btnStop"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="90,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Click="BtnStop_Click"
+                            Content="{DynamicResource StopServer}" />
+                    <Button x:Name="btnGen"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="180,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Click="BtnStop_Click"
+                            Content="{DynamicResource GenScrippt}" />
+                </Grid>
+            </TabItem>
+            <TabItem GotFocus="TabItem_GotFocus" Header="{DynamicResource ServerSettings}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <toolkit:PropertyGrid x:Name="pg" AutoGenerateProperties="True" />
+                    <Button Grid.Row="1"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource OKKey}" />
+                    <Button Grid.Row="1"
+                            Margin="80,0"
+                            HorizontalAlignment="Left"
+                            Content="{DynamicResource CancelKey}" />
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="logView" Header="ViewLog">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <DockPanel />
+                    <avalonEdit:TextEditor x:Name="txtEditor"
+                                           Grid.Row="0"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           HorizontalScrollBarVisibility="Auto"
+                                           IsReadOnly="True" />
+
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+
+        <!--		<GridSplitter Background="LightSteelBlue"
+		              Grid.Row="2"
+		              HorizontalAlignment="Stretch"
+		              Height="2"/>-->
+
+    </Grid>
+</Window>

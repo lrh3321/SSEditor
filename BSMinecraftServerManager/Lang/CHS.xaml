@@ -1,24 +1,28 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:sys="clr-namespace:System;assembly=mscorlib"
->
-	<BitmapImage x:Key="Icon" UriSource="../minecraft.ico"/>
-	<sys:String x:Key="ServerSettings">服务器设置</sys:String>
-	<sys:String x:Key="NormalSettings">一般设置</sys:String>
-	<sys:String x:Key="StartServer">启动(_J)</sys:String>
-	<sys:String x:Key="StopServer">停止(_S)</sys:String>
-	
-	<sys:String x:Key="ChangeLang">更改语言(_L)</sys:String>
-	<sys:String x:Key="About">关于(_A)</sys:String>
-	
-	<sys:String x:Key="JavaVMSettings">Java虚拟机设置</sys:String>
-	<sys:String x:Key="MaxMemory">最大内存大小(M):</sys:String>
-	<sys:String x:Key="MinMemory">最小内存大小(M):</sys:String>
-	<sys:String x:Key="NoGui">不使用自带图形界面</sys:String>
-	<sys:String x:Key="Launcher">启动文件：</sys:String>
-	<sys:String x:Key="JrePath">Java目录：</sys:String>
-	<sys:String x:Key="AutoDetected">自动检测</sys:String>
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <BitmapImage x:Key="Icon" UriSource="../minecraft.ico" />
+    <sys:String x:Key="ServerSettings">服务器设置</sys:String>
+    <sys:String x:Key="NormalSettings">一般设置</sys:String>
+    <sys:String x:Key="StartServer">启动(_J)</sys:String>
+    <sys:String x:Key="StopServer">停止(_S)</sys:String>
+    <sys:String x:Key="GenScrippt">生成脚本(_G)</sys:String>
 
-	<sys:String x:Key="OKKey">确定(_K)</sys:String>
-	<sys:String x:Key="CancelKey">取消(_C)</sys:String>
+    <sys:String x:Key="ChangeLang">更改语言(_L)</sys:String>
+    <sys:String x:Key="About">关于(_A)</sys:String>
+
+    <sys:String x:Key="JavaVMSettings">Java虚拟机设置</sys:String>
+    <sys:String x:Key="MaxMemory">最大内存大小(M):</sys:String>
+    <sys:String x:Key="MinMemory">最小内存大小(M):</sys:String>
+    <sys:String x:Key="NoGui">不使用自带图形界面</sys:String>
+    <sys:String x:Key="JrePath">Java目录：</sys:String>
+    <sys:String x:Key="JrePathTitle">选择Java控制台</sys:String>
+    <sys:String x:Key="JrePathFilter">Java控制台|java.exe</sys:String>
+    <sys:String x:Key="Launcher">启动文件：</sys:String>
+    <sys:String x:Key="LauncherTitle">选择要启动的jar程序包</sys:String>
+    <sys:String x:Key="LauncherFilter">Java文件|*.jar</sys:String>
+    <sys:String x:Key="AutoDetected">自动检测</sys:String>
+
+    <sys:String x:Key="OKKey">确定(_K)</sys:String>
+    <sys:String x:Key="CancelKey">取消(_C)</sys:String>
 </ResourceDictionary>
