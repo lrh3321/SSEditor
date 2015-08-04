@@ -31,237 +31,251 @@ using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 
 namespace BSMinecraftServerManager
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        Process javaProcess;
+	/// <summary>
+	/// Interaction logic for Window1.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
+		Process javaProcess;
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+		public MainWindow()
+		{
+			InitializeComponent();
+		}
 
-        void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //txtJre.Text = ExtensionMethods.GetJavaHome();
-            this.LoadConfiguration();
+		void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			//txtJre.Text = ExtensionMethods.GetJavaHome();
+			this.LoadConfiguration();
 
-            InitMenuItem();
+			InitMenuItem();
 
-            InitHighlighting();
-        }
+			InitHighlighting();
+		}
 
-        void InitHighlighting()
-        {
-            XshdSyntaxDefinition xshd;
+		void InitHighlighting()
+		{
+			XshdSyntaxDefinition xshd;
 
-            using (Stream s = BSMinecraftServerManager.Resources.OpenStream("JavaLog.xshd"))
-            {
-                using (XmlTextReader reader = new XmlTextReader(s))
-                {
-                    xshd = HighlightingLoader.LoadXshd(reader);
-                }
-                txtEditor.SyntaxHighlighting = HighlightingLoader.Load(xshd, HighlightingManager.Instance);
-            }
-        }
+			using (Stream s = BSMinecraftServerManager.Resources.OpenStream("JavaLog.xshd"))
+			{
+				using (XmlTextReader reader = new XmlTextReader(s))
+				{
+					xshd = HighlightingLoader.LoadXshd(reader);
+				}
+				txtEditor.SyntaxHighlighting = HighlightingLoader.Load(xshd, HighlightingManager.Instance);
+			}
+		}
 
-        void InitMenuItem()
-        {
-            var lan = (App.Current as App).Langueage;
-            MenuItem mi = null;
-            foreach (Langue element in Enum.GetValues(typeof(Langue)))
-            {
-                menuChangeLangue.Items.Add(mi = new MenuItem
-                {
-                    Header = element.ToString(),
-                    DataContext = element,
-                    IsCheckable = false
-                });
-                if (element == lan)
-                {
-                    mi.IsChecked = true;
-                }
-            }
-        }
+		void InitMenuItem()
+		{
+			var lan = (App.Current as App).Langueage;
+			MenuItem mi = null;
+			foreach (Langue element in Enum.GetValues(typeof(Langue)))
+			{
+				menuChangeLangue.Items.Add(mi = new MenuItem
+				                           {
+				                           	Header = element.ToString(),
+				                           	DataContext = element,
+				                           	IsCheckable = false
+				                           });
+				if (element == lan)
+				{
+					mi.IsChecked = true;
+				}
+			}
+		}
 
-        void BtnStart_Click(object sender, RoutedEventArgs e)
-        {
-            StartServer();
-            (logView.Parent as TabControl).SelectedItem = logView;
-        }
+		void BtnStart_Click(object sender, RoutedEventArgs e)
+		{
+			StartServer();
+		}
 
-        void BtnStop_Click(object sender, RoutedEventArgs e)
-        {
-            this.CloseJavaProcess();
+		void BtnStop_Click(object sender, RoutedEventArgs e)
+		{
+			this.CloseJavaProcess();
 
-        }
+		}
 
 
-        void StartServer()
-        {
-            if (!this.VerifySettings())
-                return;
-            if (javaProcess == null)
-            {
-                javaProcess = new Process();
-                JavaArgument jarg = new JavaArgument((int)maxMem.Value,
-                    (int)minMem.Value,
-                    txtJar.Text,
-                    (bool)chkNogui.IsChecked ? "nogui" : string.Empty);
-                var info = new ProcessStartInfo("java", jarg.ToString());//"-Xms512M -Xmx1024M -jar minecraft_server.1.8.jar nogui"
-                info.WorkingDirectory = Path.GetDirectoryName(txtJar.Text);// "D:\\我的文档\\Downloads\\MC";
-                info.UseShellExecute = false;
-                info.RedirectStandardInput = true;
-                info.RedirectStandardOutput = true;
-                info.RedirectStandardError = true;
-                string path = info.EnvironmentVariables["PATH"];
-                string jre =txtJre.Text.Trim();// Path.GetDirectoryName()
-                if (!path.Contains(jre))
-                    info.EnvironmentVariables["PATH"] = path + ";" + jre;//C:\\Program Files\\Java\\jre7\\bin\\java
+		void StartServer()
+		{
+			if (!this.VerifySettings())
+				return;
+			if (javaProcess == null)
+			{
+				javaProcess = new Process();
+				JavaArgument jarg = new JavaArgument((int)maxMem.Value,
+				                                     (int)minMem.Value,
+				                                     txtJar.Text,
+				                                     (bool)chkNogui.IsChecked ? "nogui" : string.Empty);
+				var info = new ProcessStartInfo(Path.GetFileName(txtJre.Text),
+				                                jarg.ToString());//"-Xms512M -Xmx1024M -jar minecraft_server.1.8.jar nogui"
+				info.WorkingDirectory = Path.GetDirectoryName(txtJar.Text);// "D:\\我的文档\\Downloads\\MC";
+				info.UseShellExecute = false;
+				info.RedirectStandardInput = true;
+				info.RedirectStandardOutput = true;
+				info.RedirectStandardError = true;
+				string path = info.EnvironmentVariables["PATH"];
+				string jre = Path.GetDirectoryName(txtJre.Text);//txtJre.Text.Trim();//
+				if (!path.Contains(jre))
+					info.EnvironmentVariables["PATH"] = path + ";" + jre;//C:\\Program Files\\Java\\jre7\\bin\\java
 #if !DEBUG
 				info.CreateNoWindow = true;
 #endif
-                javaProcess.StartInfo = info;
-                javaProcess.OutputDataReceived += new DataReceivedEventHandler(javaProcess_OutputDataReceived);
-                javaProcess.Start();
-                javaProcess.BeginOutputReadLine();
+				javaProcess.StartInfo = info;
+				javaProcess.OutputDataReceived += new DataReceivedEventHandler(javaProcess_OutputDataReceived);
+				javaProcess.Start();
+				javaProcess.BeginOutputReadLine();
+				(logView.Parent as TabControl).SelectedItem = logView;
+				expPreSet.IsExpanded=false;
+			}
+			else
+			{
 
-            }
-            else
-            {
+			}
+		}
 
-            }
-        }
+		bool closingJavaProcess = false;
 
-        bool closingJavaProcess = false;
+		void CloseJavaProcess()
+		{
+			if (javaProcess != null && !closingJavaProcess)
+			{
+				javaProcess.StandardInput.WriteLine("stop");
+				Thread t = new Thread(new ParameterizedThreadStart(KillJavaProcess));
+				t.Start(javaProcess);
+			}
+		}
 
-        void CloseJavaProcess()
-        {
-            if (javaProcess != null && !closingJavaProcess)
-            {
-                javaProcess.StandardInput.WriteLine("stop");
-                Thread t = new Thread(new ParameterizedThreadStart(KillJavaProcess));
-                t.Start(javaProcess);
-            }
-        }
+		void KillJavaProcess(object obj)
+		{
+			closingJavaProcess = true;
+			Thread.Sleep(3000);
+			if ((javaProcess != null) && !javaProcess.HasExited)
+			{
+				javaProcess.Kill();
+				javaProcess.Dispose();
+				javaProcess = null;
+			}
+			closingJavaProcess = false;
+		}
 
-        void KillJavaProcess(object obj)
-        {
-            closingJavaProcess = true;
-            Thread.Sleep(3000);
-            if ((javaProcess != null) && !javaProcess.HasExited)
-            {
-                javaProcess.Kill();
-                javaProcess.Dispose();
-                javaProcess = null;
-            }
-            closingJavaProcess = false;
-        }
+		void javaProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
+		{
+			if (string.IsNullOrEmpty(e.Data))
+			{
+				return;
+			}
+			Debug.WriteLine(e.Data);
+			Dispatcher.Invoke(DispatcherPriority.Normal,
+			                  new Action(() =>
+			                             {
+			                             	txtEditor.AppendText(e.Data + "\r\n");
+			                             }
+			                            ));
+		}
 
-        void javaProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(e.Data))
-            {
-                return;
-            }
-            Debug.WriteLine(e.Data);
-            Dispatcher.Invoke(DispatcherPriority.Normal,
-                              new Action(() =>
-                              {
-                                  txtEditor.AppendText(e.Data + "\r\n");
-                              }
-                                        ));
-        }
+		bool VerifySettings()
+		{
+			if (!File.Exists(txtJre.Text)||(!File.Exists(txtJar.Text))) {
+				MessageBox.Show(new FileNotFoundException().Message);
+				return false;
+			}
+			return true;
+		}
 
-        bool VerifySettings()
-        {
-            return true;
-        }
+		protected override void OnClosed(EventArgs e)
+		{
+			this.CloseJavaProcess();
+			this.SaveConfiguration();
+			base.OnClosed(e);
+		}
 
-        protected override void OnClosed(EventArgs e)
-        {
-            this.CloseJavaProcess();
-            this.SaveConfiguration();
-            base.OnClosed(e);
-        }
+		void LoadConfiguration()
+		{
+			maxMem.Value = short.Parse(ExtensionMethods.Settings[ExtensionMethods.MaxMemoryKey]);
+			minMem.Value = short.Parse(ExtensionMethods.Settings[ExtensionMethods.MinMemoryKey]);
 
-        void LoadConfiguration()
-        {
-            maxMem.Value = short.Parse(ExtensionMethods.Settings[ExtensionMethods.MaxMemoryKey]);
-            minMem.Value = short.Parse(ExtensionMethods.Settings[ExtensionMethods.MinMemoryKey]);
+			txtJre.Text = ExtensionMethods.Settings[ExtensionMethods.JrePathKey];
+			txtJar.Text = ExtensionMethods.Settings[ExtensionMethods.JarPathKey];
 
-            txtJre.Text = ExtensionMethods.Settings[ExtensionMethods.JrePathKey];
-            txtJar.Text = ExtensionMethods.Settings[ExtensionMethods.JarPathKey];
+			chkNogui.IsChecked = bool.Parse(ExtensionMethods.Settings[ExtensionMethods.NoGUIKey]);
+		}
 
-            chkNogui.IsChecked = bool.Parse(ExtensionMethods.Settings[ExtensionMethods.NoGUIKey]);
-        }
+		void SaveConfiguration()
+		{
 
-        void SaveConfiguration()
-        {
+			ExtensionMethods.SaveConfiguration();
+		}
 
-            ExtensionMethods.SaveConfiguration();
-        }
+		void MenuChangeLangue_Click(object sender, RoutedEventArgs e)
+		{
+			MenuItem mi = e.OriginalSource as MenuItem;
+			var val = (Langue)mi.DataContext;
+			var oldVal = (App.Current as App).Langueage;
+			if (val == oldVal)
+			{
+				return;
+			}
+			(App.Current as App).ChangeLanguage(val);
+			foreach (MenuItem element in menuChangeLangue.Items)
+			{
+				if (element.IsChecked)
+				{
+					element.IsChecked = false;
+					break;
+				}
+			}
+			mi.IsChecked = true;
+			//			Debug.WriteLine(sender);
+		}
 
-        void MenuChangeLangue_Click(object sender, RoutedEventArgs e)
-        {
-            MenuItem mi = e.OriginalSource as MenuItem;
-            var val = (Langue)mi.DataContext;
-            var oldVal = (App.Current as App).Langueage;
-            if (val == oldVal)
-            {
-                return;
-            }
-            (App.Current as App).ChangeLanguage(val);
-            foreach (MenuItem element in menuChangeLangue.Items)
-            {
-                if (element.IsChecked)
-                {
-                    element.IsChecked = false;
-                    break;
-                }
-            }
-            mi.IsChecked = true;
-            //			Debug.WriteLine(sender);
-        }
+		void TabItem_GotFocus(object sender, RoutedEventArgs e)
+		{
+			if (pg.SelectedObject == null)
+			{
+				pg.SelectedObject = SystemPara.CurrentProperties;
+			}
+		}
 
-        void TabItem_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (pg.SelectedObject == null)
-            {
-                pg.SelectedObject = SystemPara.CurrentProperties;
-            }
-        }
+		private void SelectFileCommond_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			string para = (e.Parameter as string);
+			TextBox txtbox = null;
 
-        private void SelectFileCommond_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            string para = (e.Parameter as string);
-            TextBox txtbox = null;
-
-            if (string.IsNullOrEmpty(para))
-            {
-                para = "Launcher";
-                txtbox = txtJar;
-            }
-            else if (para == "JrePath")
-            {
-                txtbox = txtJre;
-            }
-            else
-            {
-                return;
-            }
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = TryFindResource(para + "Filter") as string;// "Java控制台|java.exe";
-            ofd.Title = TryFindResource(para + "Title") as string;
-            if ((bool)ofd.ShowDialog())
-            {
-                txtbox.Text = ofd.FileName;
-            };
-        }
-
-    }
+			if (string.IsNullOrEmpty(para))
+				para = "Launcher";
+			if (para == "Launcher")
+			{
+				txtbox = txtJar;
+			}
+			else if (para == "JrePath")
+			{
+				txtbox = txtJre;
+			}
+			else
+			{
+				return;
+			}
+			OpenFileDialog ofd = new OpenFileDialog();
+			ofd.Filter = TryFindResource(para + "Filter") as string;// "Java控制台|java.exe";
+			ofd.Title = TryFindResource(para + "Title") as string;
+			if ((bool)ofd.ShowDialog())
+			{
+				txtbox.Text = ofd.FileName;
+			};
+		}
+		
+		void CommandBox_SendCommand(object sender, BSMinecraftServerManager.Controls.CommandTriggedEventArgs e)
+		{
+			if (javaProcess != null) {
+				javaProcess.StandardInput.WriteLine(e.Command);
+				txtEditor.AppendText(string.Format("Input:{0}\r\n",e.Command));
+			}
+		}
+		
+	}
 
 
 }

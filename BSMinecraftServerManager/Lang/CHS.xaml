@@ -4,6 +4,9 @@
     <BitmapImage x:Key="Icon" UriSource="../minecraft.ico" />
     <sys:String x:Key="ServerSettings">服务器设置</sys:String>
     <sys:String x:Key="NormalSettings">一般设置</sys:String>
+    <sys:String x:Key="ModSettings">模组设置</sys:String>
+    <sys:String x:Key="ViewLogs">查看日志</sys:String>
+	
     <sys:String x:Key="StartServer">启动(_J)</sys:String>
     <sys:String x:Key="StopServer">停止(_S)</sys:String>
     <sys:String x:Key="GenScrippt">生成脚本(_G)</sys:String>

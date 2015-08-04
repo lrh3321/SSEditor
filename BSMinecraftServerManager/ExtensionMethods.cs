@@ -75,7 +75,7 @@ namespace BSMinecraftServerManager
                 setting = new Setting();
                 setting[MaxMemoryKey] = "1024";
                 setting[MinMemoryKey] = "512";
-                setting[JrePathKey] = GetJavaHome();
+                setting[JrePathKey] = Path.Combine(GetJavaHome(),"bin","java.exe");
                 string jar = string.Empty;
                 string[] arr = Directory.GetFiles(Environment.CurrentDirectory, "forge*.jar");
                 if (arr.Length > 0)

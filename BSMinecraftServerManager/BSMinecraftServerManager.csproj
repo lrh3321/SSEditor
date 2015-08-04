@@ -65,6 +65,8 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CommandBox.cs" />
+    <Compile Include="Controls\CommandTriggedEventArgs.cs" />
     <Compile Include="EnumGenAttribute.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -79,12 +81,20 @@
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AboutWindow.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AboutWindow.xaml" />
     <Page Include="Lang\CHS.xaml" />
     <Page Include="Lang\CHT.xaml" />
     <Page Include="Lang\ENU.xaml" />
-    <Page Include="Window1.xaml" />
+    <Page Include="MainWindow.xaml" />
+    <Page Include="Themes\CommandBox.xaml" />
+    <Page Include="Themes\Generic.xaml" />
+    <Page Include="Themes\MetroStyle.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -108,9 +118,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls" />
     <Folder Include="References" />
     <Folder Include="Resources" />
     <Folder Include="Lang" />
+    <Folder Include="Themes" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
