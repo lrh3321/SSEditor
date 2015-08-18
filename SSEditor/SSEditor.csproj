@@ -63,16 +63,8 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Object\Class.cs" />
-    <Compile Include="Object\ClassTypes.cs" />
-    <Compile Include="Object\IMapProvid.cs" />
-    <Compile Include="Object\MovePoint.cs" />
-    <Compile Include="Object\MovePointList.cs" />
-    <Compile Include="Object\Proficiency.cs" />
-    <Compile Include="Object\TerrainType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\WPFAssemblyInfo.cs" />
-    <Compile Include="Utility.cs" />
     <Compile Include="ViewModel\ClassView.xaml.cs">
       <DependentUpon>ClassView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -100,21 +92,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fluent.Ribbon\Fluent\Fluent dotNET 4.0.csproj">
-      <Project>{281095d8-d8b3-4a7f-8896-646483fb685c}</Project>
-      <Name>Fluent dotNET 4.0</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfExtendedToolkit\Src\Xceed.Wpf.AvalonDock.Themes.Aero\Xceed.Wpf.AvalonDock.Themes.Aero.csproj">
-      <Project>{ba72cce0-a9fb-4995-b496-7fec5c87b85b}</Project>
-      <Name>Xceed.Wpf.AvalonDock.Themes.Aero</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfExtendedToolkit\Src\Xceed.Wpf.AvalonDock\Xceed.Wpf.AvalonDock.csproj">
-      <Project>{db81988f-e0f2-45a0-a1fd-8c37f3d35244}</Project>
-      <Name>Xceed.Wpf.AvalonDock</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfExtendedToolkit\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj">
-      <Project>{72e591d6-8f83-4d8c-8f67-9c325e623234}</Project>
-      <Name>Xceed.Wpf.Toolkit</Name>
+    <ProjectReference Include="..\SSEditor.Object\SSEditor.Object.csproj">
+      <Project>{1FAC4117-16D2-4A12-AADE-E397515C65FF}</Project>
+      <Name>SSEditor.Object</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

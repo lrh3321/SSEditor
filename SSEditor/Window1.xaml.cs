@@ -23,6 +23,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace SSEditor
 {
@@ -31,7 +32,7 @@ namespace SSEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Object.Class> m_classList;
+        Object.ClassCollection m_classList;
         NumericPair[] pairs;
         ComboBox[] cbos;
         ToggleButton[] chks;
@@ -92,7 +93,7 @@ namespace SSEditor
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            m_classList = new ObservableCollection<Object.Class>();
+            m_classList = new Object.ClassCollection();
 
             //LoadScript();
             lstClass.ItemsSource = m_classList;
@@ -257,8 +258,54 @@ namespace SSEditor
             cls.Type = ct;
             cls.Name = txtName.Text;
             cls.Description = txtDescription.Text;
+            
+            var s =new XmlSerializer(typeof(Object.ClassCollection));
+            StringWriter writer =new StringWriter();
+            
+            
+            s.Serialize(writer, m_classList);
+            
+            StringReader reader =new StringReader(writer.ToString());
+            System.Diagnostics.Debug.WriteLine(writer.ToString());
+            
+//            var c2 = s.Deserialize(reader);
+//            System.Diagnostics.Debug.WriteLine(c2);
+            
         }
 
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtComLine.Text))
+            {
+                return;
+            }
+            var arr = Utility.StringToArray(txtComLine.Text, ' ');
+            switch (comboBox.SelectedIndex)
+            {
+                case 0:
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        pairs[i].PropertyValue = arr[i];
+                    }
+                    break;
+                case 1:
+                    for (int i = 0; i < arr.Length - 2; i++)
+                    {
+                        pairs[i].PropertyLimit = arr[i];
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < arr.Length - 2; i++)
+                    {
+                        pairs[i].GrowthRate = arr[i];
+                    }
+                    break;
+                default:
+                    return;
+            }
+        }
+    
         #region "CommandBindings"
         private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -308,37 +355,5 @@ namespace SSEditor
 
         }
         #endregion
-
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtComLine.Text))
-            {
-                return;
-            }
-            var arr = Utility.StringToArray(txtComLine.Text, ' ');
-            switch (comboBox.SelectedIndex)
-            {
-                case 0:
-                    for (int i = 0; i < arr.Length; i++)
-                    {
-                        pairs[i].PropertyValue = arr[i];
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i < arr.Length - 2; i++)
-                    {
-                        pairs[i].PropertyLimit = arr[i];
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < arr.Length - 2; i++)
-                    {
-                        pairs[i].GrowthRate = arr[i];
-                    }
-                    break;
-                default:
-                    return;
-            }
-        }
     }
 }

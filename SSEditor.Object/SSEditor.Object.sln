@@ -2,9 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 # SharpDevelop 4.4
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSEditor", "SSEditor\SSEditor.csproj", "{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSEditor.Object", "SSEditor.Object\SSEditor.Object.csproj", "{1FAC4117-16D2-4A12-AADE-E397515C65FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSEditor.Object", "SSEditor.Object.csproj", "{1FAC4117-16D2-4A12-AADE-E397515C65FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,10 +10,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDB6EC93-B457-48B8-B2BD-826195AEDE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FAC4117-16D2-4A12-AADE-E397515C65FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FAC4117-16D2-4A12-AADE-E397515C65FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1FAC4117-16D2-4A12-AADE-E397515C65FF}.Release|Any CPU.Build.0 = Release|Any CPU
