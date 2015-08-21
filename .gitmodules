@@ -10,3 +10,6 @@
 [submodule "AvalonEdit"]
 	path = AvalonEdit
 	url = git://github.com/icsharpcode/AvalonEdit.git
+[submodule "SRPGStudio.GameObjects"]
+	path = SRPGStudio.GameObjects
+	url = git://github.com/lrh3321/SRPGStudio.GameObjects.git

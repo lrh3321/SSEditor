@@ -92,9 +92,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SSEditor.Object\SSEditor.Object.csproj">
+    <ProjectReference Include="..\SRPGStudio.GameObjects\SRPGStudio.GameObjects.csproj">
       <Project>{1FAC4117-16D2-4A12-AADE-E397515C65FF}</Project>
-      <Name>SSEditor.Object</Name>
+      <Name>SRPGStudio.GameObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

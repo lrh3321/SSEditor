@@ -24,6 +24,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml;
 using System.Xml.Serialization;
+using SRPGStudio.GameObjects;
 
 namespace SSEditor
 {
@@ -32,7 +33,7 @@ namespace SSEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        Object.ClassCollection m_classList;
+        ClassCollection m_classList;
         NumericPair[] pairs;
         ComboBox[] cbos;
         ToggleButton[] chks;
@@ -175,7 +176,7 @@ namespace SSEditor
                 }
             }
         }
-        private void LoadObjectClass(Object.Class cls)
+        private void LoadObjectClass(Class cls)
         {
             for (int i = 0; i < 9; i++)
             {
@@ -231,7 +232,7 @@ namespace SSEditor
             doc.AppendChild(root);
             doc.Save(dest);
         }
-        private void SaveObjectClass(Object.Class cls)
+        private void SaveObjectClass(Class cls)
         {
             for (int i = 0; i < 9; i++)
             {

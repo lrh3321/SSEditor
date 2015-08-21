@@ -3,7 +3,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:SSEditor.ViewModel"
-        xmlns:my3="clr-namespace:SSEditor.Object"
         xmlns:my2="clr-namespace:System;assembly=mscorlib"
         Language="zh-cn"
         Title="SSEditor"
